@@ -1,0 +1,76 @@
+body{   
+    
+}
+
+.header-section{
+    display:grid;
+    background-image: url(/images/background.svg);
+    height: 30%;
+    grid-template-columns:10% 20% 10% 10% 50%;
+    border: 5px solid crimson;
+    
+}
+
+.grid-item{
+    
+    border: 1px solid pink;
+    
+}
+
+.item1{
+}
+
+.logo{
+    align-self: center start;
+    height: 125px;
+    width: 125px;
+}
+
+.dropdown{
+    align-self: center right;
+    height: 45%;
+    width: 65%;
+    font-size: 50px;
+    border: 0;
+    background-color: rgba(0,0,0,0.3);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.item5{
+    position: relative;
+    place-self: right center;
+}
+
+.dateandtime{
+    position: absolute;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 50px;
+}
+
+.date{
+    position:absolute;
+    left:0;
+    top:auto;
+    color: white;
+}
+
+.time{
+    position: absolute;
+    
+    color: mistyrose;
+}
+
+.smallfont{
+    font-variant-caps: small-caps;
+    left:80%;
+}
+
+.sun{
+    position:absolute;
+    top: 5%;
+    left: 30%;
+    height: 80px;
+    width: 80px;
+}
+
