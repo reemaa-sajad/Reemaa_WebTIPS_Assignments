@@ -1,24 +1,21 @@
-body{   
-    
+*{
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .header-section{
     display:grid;
     background-image: url(/images/background.svg);
-    height: 30%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     grid-template-columns:10% 20% 10% 10% 50%;
-    border: 5px solid crimson;
+    padding-top: 50px;
+    
     
 }
 
-.grid-item{
-    
-    border: 1px solid pink;
-    
-}
 
-.item1{
-}
+
 
 .logo{
     align-self: center start;
@@ -26,51 +23,52 @@ body{
     width: 125px;
 }
 
+
 .dropdown{
     align-self: center right;
-    height: 45%;
-    width: 65%;
-    font-size: 50px;
+    font-size: 30px;
     border: 0;
     background-color: rgba(0,0,0,0.3);
     color: white;
     font-family: Arial, Helvetica, sans-serif;
+    padding: 10px;
+    margin-top: 50px;
 }
 
-.item5{
-    position: relative;
-    place-self: right center;
-}
 
 .dateandtime{
-    position: absolute;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 50px;
+    font-size: 30px;
+    display: flex;
 }
 
 .date{
-    position:absolute;
-    left:0;
-    top:auto;
     color: white;
+    font-size: 30px;
 }
 
 .time{
-    position: absolute;
-    
+    padding-top: 10px;
     color: mistyrose;
 }
 
-.smallfont{
-    font-variant-caps: small-caps;
-    left:80%;
-}
 
 .sun{
-    position:absolute;
-    top: 5%;
-    left: 30%;
     height: 80px;
-    width: 80px;
+}
+
+.item3{
+    color: white;
+    font-size: 30px;
+}
+.border{
+    border-right: white dotted 2px;
+}
+
+
+
+.item4{
+    color: white;
+    
+    font-size: 30px;
 }
 

@@ -1,39 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <link rel="stylesheet" href="styles.css">
-        <title>Weather App</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div class="header-section">
-            <div class="grid-item item1">
-                <img class="logo" src="/images/kolkata.svg">
+
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <title>Weather App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="header-section">
+        <div class="item1">
+            <img class="logo" src="/images/kolkata.svg">
+        </div>
+        <div class="item2">
+            <div>
+                <select class="dropdown" id="location" name="location">
+                    <option value="delhi" selected>New Delhi</option>
+                    <option value="mumbai">Mumbai</option>
+                    <option value="coimbatore">Coimbatore</option>
+                    <option value="chennai">Chennai</option>
+                </select>
             </div>
-            <div class="grid-item item2">
-                <div>
-                    <form>
-                        <select class = "dropdown" id="location" name="location">
-                            <option value="delhi" selected>New Delhi</option>
-                            <option value="mumbai">Mumbai</option>
-                            <option value="coimbatore">Coimbatore</option>
-                            <option value="chennai">Chennai</option>
-                          </select>
-                    </form>
-                </div>
-                <div>
-                    <p class="dateandtime time">10:10:44</p>
-                </div>
-                
-            </div>
-            <div class="grid-item item3">3</div>
-            <div class="grid-item item4">4</div>
-            <div class="grid-item item5">
-                
+            <div class="dateandtime">
+                <p class="time">10:10<span>:20</span>
+                </p>
                 <img class="sun" src="/images/amState.svg" alt="sun image">
-                <p class="dateandtime date">01-Mar-2020</p>
+            </div>
+            <div class="date">
+                <p class="date">01-Mar-2020</p>
+            </div>
+
+        </div>
+        <div class="item3">
+            <div class="border">
+                <h2 class="temp">Temp °C</h2>
+                <h1><strong>25 C</strong></h1>
+            </div>
+            <div class="border">
+                <h2 class="temp">Temp F</h2>
+                <h1><strong>78 F</strong></h1>
             </div>
         </div>
-        
-    </body>
+        <div class="item4">
+            <div>
+                <h2 class="temp">Humidity</h2>
+                <h1><strong>26%</strong></h1>
+            </div>
+            <div>
+                <h2 class="temp">Precipitation</h2>
+                <h1><strong>0%</strong></h1>
+            </div>
+        </div>
+        <div class="item5">
+            <div class="clock"></div>
+            <div class="line"></div>
+            <div class="clouds"></div>
+            <div class="temp"></div>
+        </div>
+    </div>
+
+</body>
+
 </html>
