@@ -8,14 +8,9 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    grid-template-columns:10% 20% 10% 10% 50%;
+    grid-template-columns:10% 18% 10% 12% 50%;
     padding-top: 50px;
-    
-    
 }
-
-
-
 
 .logo{
     align-self: center start;
@@ -23,18 +18,16 @@
     width: 125px;
 }
 
-
 .dropdown{
     align-self: center right;
-    font-size: 30px;
+    font-size: 35px;
     border: 0;
-    background-color: rgba(0,0,0,0.3);
-    color: white;
+    background-color: rgba(131, 131, 131, 0.25);
+    color: #FFFFFF;;
     font-family: Arial, Helvetica, sans-serif;
     padding: 10px;
     margin-top: 50px;
 }
-
 
 .dateandtime{
     font-size: 30px;
@@ -42,33 +35,75 @@
 }
 
 .date{
-    color: white;
-    font-size: 30px;
+    color: #FFFFFF;;
+    font-size: 30px; 
+    margin-top: 10px;
+}
+
+.sub{
+    font-size: 20px;
 }
 
 .time{
     padding-top: 10px;
     color: mistyrose;
+    margin-bottom: 5px;
 }
-
 
 .sun{
     height: 80px;
+    padding-left:5px;
 }
 
 .item3{
-    color: white;
-    font-size: 30px;
+    color: #FFFFFF;;
+    font-size: 35px;
+    padding-left: 50px;
+}
+
+.temp{
+    font-size: 25px;
 }
 .border{
-    border-right: white dotted 2px;
+    border-right: #FFFFFF dotted 2px;
 }
-
-
 
 .item4{
-    color: white;
-    
-    font-size: 30px;
+    color: #FFFFFF;;
+    padding-left: 20px;
+    font-size: 35px;
 }
 
+.item5{
+    padding-left: 100px;
+}
+
+.clock{
+    display:flex;
+    justify-content: space-between;
+    font-size: 20px;
+    color:#FFFFFF;;
+    padding-top:35px;
+    padding-bottom: 20px;
+}
+
+.lines{
+    display:flex;
+    justify-content: space-between;
+    padding-bottom: 70px;
+    color: #FFFFFF;;
+}
+
+.clouds{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom:20px;
+}
+
+.degree{
+    display:flex;
+    justify-content:space-between;
+    font-size: 20px;
+    color:#FFFFFF;;
+    padding-left: 5px;
+}
