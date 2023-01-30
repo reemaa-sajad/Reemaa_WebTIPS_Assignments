@@ -1,15 +1,22 @@
+@import "vars.css";
+
+
+
 *{
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.header-section{
-    display:grid;
+body{
     background-image: url(/images/background.svg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    grid-template-columns:10% 18% 10% 12% 50%;
-    padding-top: 50px;
+}
+
+.header-section{
+    display:grid;
+    grid-template-columns:10% 20% 10% 10% 20%;
+    padding-top: 25px;
 }
 
 .logo{
@@ -37,7 +44,6 @@
 .date{
     color: #FFFFFF;;
     font-size: 30px; 
-    margin-top: 10px;
 }
 
 .sub{
@@ -45,9 +51,7 @@
 }
 
 .time{
-    padding-top: 10px;
     color: mistyrose;
-    margin-bottom: 5px;
 }
 
 .sun{
@@ -58,11 +62,11 @@
 .item3{
     color: #FFFFFF;;
     font-size: 35px;
-    padding-left: 50px;
+    padding-left: 20px;
 }
 
 .temp{
-    font-size: 25px;
+    font-size: 20px;
 }
 .border{
     border-right: #FFFFFF dotted 2px;
@@ -75,7 +79,7 @@
 }
 
 .item5{
-    padding-left: 100px;
+    padding-left: 10px;
 }
 
 .clock{
@@ -91,7 +95,8 @@
     display:flex;
     justify-content: space-between;
     padding-bottom: 70px;
-    color: #FFFFFF;;
+    color: #FFFFFF;
+    padding: 0px 20px 30px 20px;
 }
 
 .clouds{
@@ -104,6 +109,125 @@
     display:flex;
     justify-content:space-between;
     font-size: 20px;
-    color:#FFFFFF;;
+    color:#FFFFFF;
     padding-left: 5px;
+    padding: 0px 20px 30px 20px;
+}
+
+/* section 2 */
+.body-section{
+    display:grid;
+    background-color: black;
+    border-radius: 25px;
+}
+
+.first-row{
+    display:grid;
+    grid-template-columns: 65% 5% 5% 5% 7% 13%;
+    grid-auto-columns: 100%;
+    color: #FFFFFF;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 25px;
+}
+
+.top-title{
+    padding-left: 40%;
+} 
+
+.displaytop{
+    font-size: 15px;
+    padding-bottom: 10px;
+    
+}
+
+.inputcity{
+    background-color: rgba(131, 131, 131, 0.25);
+    font-size: 10px;
+    color: #FFFFFF;
+    width: 40px;
+    height: 20px;
+}
+
+.row{
+    display: flex;
+    justify-content: flex-start;
+    overflow-x: scroll;
+    column-gap: 40px;
+    padding: 0px 20px;
+  }
+
+.card {
+    padding: 20px;
+    min-width: 300px;
+    margin-bottom: 2rem;
+    background-color: #181818;
+    background-image: url(/images/kolkata.svg);
+    background-position-x: right;
+    background-position-y: bottom;
+    background-repeat: no-repeat;
+    background-size:60% ;
+    color: #FFFFFF;
+    font-size: 20px;
+    border-radius: 10px;
+    transition: transform 2s;
+}
+
+.card:hover{
+    transform: scale(1.2);
+  }
+
+.dandt{
+    font-size: 20px;
+    display: flex;
+}
+
+.right-align{
+    padding-left: 100px;
+}
+
+.center-align{
+    padding-left: 10px;
+    font-size: 20px;
+}
+
+.changesize{
+    font-size: 20px;
+}
+
+
+
+@media (max-width: 750px){
+    .header-section{
+        grid-template-columns:20% 40% 20% 20%;
+    }
+
+
+    .first-row{
+    display:grid;
+    grid-template-columns: 40% 10% 10% 10% 20% 10%;
+    color: #FFFFFF;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 15px;
+    }
+
+    .inputcity{
+        background-color: rgba(131, 131, 131, 0.25);
+        font-size: 10px;
+        color: #FFFFFF;
+        width: 30px;
+        height: 20px;
+    }
+
+    .top-title{
+        padding-left: 10%;
+    } 
+    .row{
+        overflow-x: scroll;
+    }
+
+    .item5{
+        grid-column: 1/5;
+    }
 }

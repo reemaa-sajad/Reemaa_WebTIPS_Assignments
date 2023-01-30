@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Weather App</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
@@ -46,8 +47,9 @@
                 <p class="temp">Humidity</p>
                 <p><strong>26%</strong></p>
             </div>
+
             <div>
-                <p class="temp">Precipitation</p>
+                <p class="temp align">Precipitation</p>
                 <p><strong>0%</strong></p>
             </div>
         </div>
@@ -56,9 +58,9 @@
                 <div>NOW</div>
                 <div>11 AM</div>
                 <div>12 PM</div>
-                <div>1 PM</div>
-                <div>2 PM</div>
-                <div>3 PM</div>
+                <div>01 PM</div>
+                <div>02 PM</div>
+                <div>03 PM</div>
             </div>
             <div class="lines">
                 <div>|</div>
@@ -89,6 +91,91 @@
                 <div>8</div>
                 <div>6</div>
             </div>
+        </div>
+    </div>
+    <div class="body-section">
+        <div class="first-row">
+            <div class="top-title">Top cities around the world</div>
+            <div><img src="/images/Weather Icons/sunnyIcon.svg"></div>
+            <div><img src="/images/Weather Icons/snowflakeIcon.svg"></div>
+            <div><img src="/images/Weather Icons/rainyIcon.svg"></div>
+            <div class="displaytop">
+                <p>Display Top</p>
+            </div>
+            <div>
+                <input class="inputcity" type="number" name="cities" step="1" min="3" max="10">
+            </div>
+        </div>
+        <div class="row">
+            <div class="card">
+                <div class="dandt">
+                    <p>New Delhi</p>
+                    <p class="right-align"> <img src="/images/Weather Icons/sunnyIcon.svg"> 25 °C</p>
+                </div>
+                <div class="changesize">10:00 AM</div>
+                <div class="changesize date">2-MAR-2020</div>
+                <div class="dandt">
+                    <img src="/images/Weather Icons/humidityIcon.svg">
+                    <p class="center-align">53 %</p>
+                </div>
+                <div class="dandt">
+                    <img src="/images/Weather Icons/precipitationIcon.svg">
+                    <p class="center-align">10 %</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="dandt">
+                    <p>New Delhi</p>
+                    <p class="right-align"> <img src="/images/Weather Icons/sunnyIcon.svg"> 25 °C</p>
+                </div>
+                <div class="changesize">10:00 AM</div>
+                <div class="changesize date">2-MAR-2020</div>
+                <div class="dandt">
+                    <img src="/images/Weather Icons/humidityIcon.svg">
+                    <p class="center-align">53 %</p>
+                </div>
+                <div class="dandt">
+                    <img src="/images/Weather Icons/precipitationIcon.svg">
+                    <p class="center-align">10 %</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="dandt">
+                    <p>New Delhi</p>
+                    <p class="right-align"> <img src="/images/Weather Icons/sunnyIcon.svg"> 25 °C</p>
+                </div>
+                <div class="changesize">10:00 AM</div>
+                <div class="changesize date">2-MAR-2020</div>
+                <div class="dandt">
+                    <img src="/images/Weather Icons/humidityIcon.svg">
+                    <p class="center-align">53 %</p>
+                </div>
+                <div class="dandt">
+                    <img src="/images/Weather Icons/precipitationIcon.svg">
+                    <p class="center-align">10 %</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="dandt">
+                    <p>New Delhi</p>
+                    <p class="right-align"> <img src="/images/Weather Icons/sunnyIcon.svg"> 25 °C</p>
+                </div>
+                <div class="changesize">10:00 AM</div>
+                <div class="changesize date">2-MAR-2020</div>
+                <div class="dandt">
+                    <img class="humidity " src="/images/Weather Icons/humidityIcon.svg">
+                    <p class="center-align">53 %</p>
+                </div>
+                <div class="dandt">
+                    <img class="rain" src="/images/Weather Icons/precipitationIcon.svg">
+                    <p class="center-align">10 %</p>
+                </div>
+            </div>
+
+
         </div>
     </div>
 
