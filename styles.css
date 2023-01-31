@@ -134,6 +134,7 @@ body{
 
 .top-title{
     padding-left: 40%;
+    margin-top: 10px;
 } 
 
 .cursor{
@@ -148,18 +149,27 @@ body{
 
 .inputcity{
     background-color: rgba(131, 131, 131, 0.25);
-    font-size: 10px;
+    font-size: 15px;
     color: #FFFFFF;
     width: 40px;
-    height: 20px;
+    height: 25px;
 }
 
-.row{
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {  
+
+   opacity: 1;
+
+}
+
+.second-row{
     display: flex;
     justify-content: flex-start;
     overflow-x: scroll;
     column-gap: 40px;
     padding: 0px 20px;
+    margin-left: 10px;
+    margin-right: 10px;
   }
 
 .card {
