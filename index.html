@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <title>Weather App</title>
 </head>
-
+<!-- Header Section -->
 <body>
     <div class="header-section">
         <div class="item1">
@@ -25,35 +25,36 @@
                     <option value="chennai">Chennai</option>
                 </select>
             </div>
-            <div class="dateandtime">
-                <p class="timecolor">10:10<span class="sub">:44</span><img class="amstate" src="/images/General Images & Icons/amState.svg" alt="sun image">
+            <div class="date-time">
+                <p class="header-time">10:10
+                    <span class="sub">:44</span>
+                    <img class="am-state" src="/images/General Images & Icons/amState.svg" alt="sun image">
                 </p>
-                
             </div>
-            <div class="dates">
+            <div class="header-date">
                 <p>01-Mar-2020</p>
             </div>
 
         </div>
         <div class="item3">
-            <div class="border">
-                <p class="tempc">Temp °C</p>
+            <div class="temp-celsius">
+                <p class="temp-c">Temp °C</p>
                 <p class="celsius"><strong>25 C</strong></p>
             </div>
-            <div class="border">
-                <p class="tempf">Temp F</p>
+            <div class="temp-faren">
+                <p class="temp-f">Temp F</p>
                 <p class="faren"><strong>78 F</strong></p>
             </div>
         </div>
         <div class="item4">
             <div>
                 <p class="humid">Humidity</p>
-                <p class="humidnum"><strong>26%</strong></p>
+                <p class="humid-num"><strong>26%</strong></p>
             </div>
 
-            <div>
+            <div class="header-precip">
                 <p class="prec">Precipitation</p>
-                <p class="preciplevel"><strong>0%</strong></p>
+                <p class="precip-level"><strong>0%</strong></p>
             </div>
         </div>
         <div class="item5">
@@ -67,19 +68,19 @@
             </div>
             <div class="lines">
                 <div>|</div>
+                <div class="lines-alt">|</div>
                 <div>|</div>
+                <div class="lines-alt">|</div>
                 <div>|</div>
+                <div class="lines-alt">|</div>
                 <div>|</div>
+                <div class="lines-alt">|</div>
                 <div>|</div>
-                <div>|</div>
-                <div>|</div>
-                <div>|</div>
-                <div>|</div>
-                <div>|</div>
+                <div class="lines-alt">|</div>
                 <div>|</div>
             </div>
             <div class="clouds">
-                <div><img src="/images/Weather Icons/cloudyIcon.svg"></div>
+                <div><img src="/images/Weather Icons/snowflakeIcon.svg"></div>
                 <div><img src="/images/Weather Icons/rainyIcon.svg"></div>
                 <div><img src="/images/Weather Icons/windyIcon.svg"></div>
                 <div><img src="/images/Weather Icons/cloudyIcon.svg"></div>
@@ -96,12 +97,14 @@
             </div>
         </div>
     </div>
+
+<!-- Body Section -->
     <div class="body-section">
         <div class="first-row">
             <div class="top-title">Top cities around the world</div>
-            <div><img class="cursor" src="/images/Weather Icons/sunnyIcon.svg"></div>
-            <div><img class="cursor" src="/images/Weather Icons/snowflakeIcon.svg"></div>
-            <div><img class="cursor" src="/images/Weather Icons/rainyIcon.svg"></div>
+            <div><img class="cursor-sun" src="/images/Weather Icons/sunnyIcon.svg"></div>
+            <div><img class="cursor-snow" src="/images/Weather Icons/snowflakeIcon.svg"></div>
+            <div><img class="cursor-rain" src="/images/Weather Icons/rainyIcon.svg"></div>
             <div class="displaytop">
                 <p>Display Top</p>
             </div>
@@ -111,9 +114,9 @@
         </div>
         <div class="second-row">
             <div class="card">
-                <div class="candt">
+                <div class="city-temp">
                     <p>New Delhi</p>
-                    <p class="right-align"> <img class="sun" src="/images/Weather Icons/sunnyIcon.svg"> 25 °C</p>
+                    <p> <img class="sun" src="/images/Weather Icons/sunnyIcon.svg"> 25 °C</p>
                 </div>
                 <div class="changesize time">10:00 AM</div>
                 <div class="changesize date">2-MAR-2020</div>
@@ -124,9 +127,9 @@
             </div>
 
             <div class="card">
-                <div class="candt">
+                <div class="city-temp">
                     <p>New Delhi</p>
-                    <p class="right-align"> <img class="sun" src="/images/Weather Icons/sunnyIcon.svg"> 25 °C</p>
+                    <p> <img class="sun" src="/images/Weather Icons/sunnyIcon.svg"> 25 °C</p>
                 </div>
                 <div class="changesize time">10:00 AM</div>
                 <div class="changesize date">2-MAR-2020</div>
@@ -137,9 +140,9 @@
             </div>
 
             <div class="card">
-                <div class="candt">
+                <div class="city-temp">
                     <p>New Delhi</p>
-                    <p class="right-align"> <img class="sun" src="/images/Weather Icons/sunnyIcon.svg"> 25 °C</p>
+                    <p> <img class="sun" src="/images/Weather Icons/sunnyIcon.svg"> 25 °C</p>
                 </div>
                 <div class="changesize time">10:00 AM</div>
                 <div class="changesize date">2-MAR-2020</div>
@@ -150,9 +153,35 @@
             </div>
 
             <div class="card">
-                <div class="candt">
+                <div class="city-temp">
                     <p>New Delhi</p>
-                    <p class="right-align"> <img class="sun" src="/images/Weather Icons/sunnyIcon.svg"> 25 °C</p>
+                    <p> <img class="sun" src="/images/Weather Icons/sunnyIcon.svg"> 25 °C</p>
+                </div>
+                <div class="changesize time">10:00 AM</div>
+                <div class="changesize date">2-MAR-2020</div>
+                <div class="dandt">
+                    <p class="mid-humidity"><img src="/images/Weather Icons/humidityIcon.svg"> 53 %</p>
+                    <p class="mid-precip"><img src="/images/Weather Icons/precipitationIcon.svg"> 10 %</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="city-temp">
+                    <p>New Delhi</p>
+                    <p> <img class="sun" src="/images/Weather Icons/sunnyIcon.svg"> 25 °C</p>
+                </div>
+                <div class="changesize time">10:00 AM</div>
+                <div class="changesize date">2-MAR-2020</div>
+                <div class="dandt">
+                    <p class="mid-humidity"><img src="/images/Weather Icons/humidityIcon.svg"> 53 %</p>
+                    <p class="mid-precip"><img src="/images/Weather Icons/precipitationIcon.svg"> 10 %</p>
+                </div>
+            </div>  
+
+            <div class="card">
+                <div class="city-temp">
+                    <p>New Delhi</p>
+                    <p> <img class="sun" src="/images/Weather Icons/sunnyIcon.svg"> 25 °C</p>
                 </div>
                 <div class="changesize time">10:00 AM</div>
                 <div class="changesize date">2-MAR-2020</div>
@@ -165,106 +194,109 @@
 
         </div>
     </div>
+
+    <!-- Footer section -->
+
     <div class="footer-section">
         <div class="continent-title">
             <div>Cities across continents at a glance</div>
-            <div class="cname">Continent Name &#8595</div>
+            <div class="c-name">Continent Name &#8595</div>
             <div class="temp">Temperature &#8593;</div>
         </div>
          <div class="continent-list">
             <div class="continent">
-                <div class="color-change">Asia</div>
-                <div class="size-change">38 °C</div>
-                <div class="cityname">Delhi, 10:10 AM </div>
-                <div class="humidpercent">
+                <div class="footer-continent">Asia</div>
+                <div class="footer-temp">38 °C</div>
+                <div class="city-name">Delhi, 10:10 AM </div>
+                <div class="humid-percent">
                     <p> 53% <img src="/images/Weather Icons/humidityIcon.svg" alt="raindrop"></p>
                 </div>
             </div>
             <div class="continent">
-                <div class="color-change">Africa</div>
-                <div class="size-change">38 °C</div>
-                <div class="cityname">Egypt, 10:10 AM </div>
-                <div class="humidpercent">
+                <div class="footer-continent">Africa</div>
+                <div class="footer-temp">38 °C</div>
+                <div class="city-name">Egypt, 10:10 AM </div>
+                <div class="humid-percent">
                     <p> 53% <img src="/images/Weather Icons/humidityIcon.svg" alt="raindrop"></p>
                 </div>
             </div>
             <div class="continent">
-                <div class="color-change">Europe</div>
-                <div class="size-change">26 °C</div>
-                <div class="cityname">London, 10:10 AM </div>
-                <div class="humidpercent">
+                <div class="footer-continent">Europe</div>
+                <div class="footer-temp">26 °C</div>
+                <div class="city-name">London, 10:10 AM </div>
+                <div class="humid-percent">
                     <p> 53% <img src="/images/Weather Icons/humidityIcon.svg" alt="raindrop"></p>
                 </div>
             </div>
             <div class="continent">
-                <div class="color-change">Asia</div>
-                <div class="size-change">37 °C</div>
-                <div class="cityname">Chennai, 10:10 AM </div>
-                <div class="humidpercent">
+                <div class="footer-continent">Asia</div>
+                <div class="footer-temp">37 °C</div>
+                <div class="city-name">Chennai, 10:10 AM </div>
+                <div class="humid-percent">
                     <p> 53% <img src="/images/Weather Icons/humidityIcon.svg" alt="raindrop"></p>
                 </div>
             </div>
             <div class="continent">
-                <div class="color-change">Africa</div>
-                <div class="size-change">32 °C</div>
-                <div class="cityname">Egypt, 10:10 AM </div>
-                <div class="humidpercent">
+                <div class="footer-continent">Africa</div>
+                <div class="footer-temp">32 °C</div>
+                <div class="city-name">Egypt, 10:10 AM </div>
+                <div class="humid-percent">
                     <p> 53% <img src="/images/Weather Icons/humidityIcon.svg" alt="raindrop"></p>
                 </div>
             </div>
             <div class="continent">
-                <div class="color-change">Europe</div>
-                <div class="size-change">22 °C</div>
-                <div class="cityname">London, 10:10 AM </div>
-                <div class="humidpercent">
+                <div class="footer-continent">Europe</div>
+                <div class="footer-temp">22 °C</div>
+                <div class="city-name">London, 10:10 AM </div>
+                <div class="humid-percent">
                     <p> 53% <img src="/images/Weather Icons/humidityIcon.svg" alt="raindrop"></p>
                 </div>
             </div>
             <div class="continent">
-                <div class="color-change">Asia</div>
-                <div class="size-change">36 °C</div>
-                <div class="cityname">Chennai, 10:10 AM </div>
-                <div class="humidpercent">
+                <div class="footer-continent">Asia</div>
+                <div class="footer-temp">36 °C</div>
+                <div class="city-name">Chennai, 10:10 AM </div>
+                <div class="humid-percent">
                     <p> 53% <img src="/images/Weather Icons/humidityIcon.svg" alt="raindrop"></p>
                 </div>
             </div>
             <div class="continent">
-                <div class="color-change">Europe</div>
-                <div class="size-change">30 °C</div>
-                <div class="cityname">London, 10:10 AM </div>
-                <div class="humidpercent">   
+                <div class="footer-continent">Europe</div>
+                <div class="footer-temp">30 °C</div>
+                <div class="city-name">London, 10:10 AM </div>
+                <div class="humid-percent">   
                     <p> 53% <img src="/images/Weather Icons/humidityIcon.svg" alt="raindrop"></p>
                 </div>
             </div>
             <div class="continent">
-                <div class="color-change">South America</div>
-                <div class="size-change">35 °C</div>
-                <div class="cityname">Brazil, 10:10 AM </div>
-                <div class="humidpercent">
+                <div class="footer-continent">South America</div>
+                <div class="footer-temp">35 °C</div>
+                <div class="city-name">Brazil, 10:10 AM </div>
+                <div class="humid-percent">
                     <p> 53% <img src="/images/Weather Icons/humidityIcon.svg" alt="raindrop"></p>
                 </div>
             </div>
             <div class="continent">
-                <div class="color-change">Asia</div>
-                <div class="size-change">36 °C</div>
-                <div class="cityname">Delhi, 10:10 AM </div>
-                <div class="humidpercent">
+                <div class="footer-continent">Asia</div>
+                <div class="footer-temp">36 °C</div>
+                <div class="city-name">Delhi, 10:10 AM </div>
+                <div class="humid-percent">
                     <p> 53% <img src="/images/Weather Icons/humidityIcon.svg" alt="raindrop"></p>
                 </div>
             </div>
             <div class="continent">
-                <div class="color-change">Europe</div>
-                <div class="size-change">28 °C</div>
-                <div class="cityname">London, 10:10 AM </div>
-                <div class="humidpercent">
+                <div class="footer-continent">Europe</div>
+                <div class="footer-temp">28 °C</div>
+                <div class="city-name">London, 10:10 AM </div>
+                <div class="humid-percent">
                     <p> 53% <img src="/images/Weather Icons/humidityIcon.svg" alt="raindrop"></p>
                 </div>
             </div>
             <div class="continent">
-                <div class="color-change">South America</div>
-                <div class="size-change">32 °C</div>
-                <div class="cityname">Brazil, 10:10 AM </div>
-                <div class="humidpercent">
+                <div class="footer-continent">South America</div>
+                <div class="footer-temp">32 °C</div>
+                <div class="city-name">Brazil, 10:10 AM </div>
+                <div class="humid-percent">
                     <p> 53% <img src="/images/Weather Icons/humidityIcon.svg" alt="raindrop"></p>
                 </div>
             </div>
