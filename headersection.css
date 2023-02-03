@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: 10% 20% 10% 10% 50%;
     padding-top: 30px;
+    margin: 10px;
   }
   
   .logo {
@@ -47,6 +48,7 @@
     font-size: 30px;
     padding-right: 17%;
     padding-top: 40px;
+    padding-left: 15px;
   }
   
   .temp-celsius{
@@ -62,11 +64,13 @@
   .temp-f,
   .humid,
   .prec {
-    font-size: 25px;
+    font-size: 20px;
   }
   
   .celsius, .faren, .humid-num, .precip-level{
     padding: 10px;
+    font-size: 20px;
+    font-weight: bolder;
   }
   
   .header-precip{
@@ -78,6 +82,7 @@
     font-size: 30px;
     padding-left: 2%;
     padding-top: 40px;
+    padding-left: 15px;
   }
   
   .item5 {
@@ -125,7 +130,7 @@
     padding: 0px 20px 30px 20px;
   }
   
-  @media (max-width: 750px) {
+  @media (max-width: 1000px) {
       .header-section {
           grid-template-columns: 20% 40% 20% 20%;
         }

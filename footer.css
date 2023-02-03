@@ -14,11 +14,13 @@
   .temp {
     text-align: end;
     font-size: 25px;
+    cursor: pointer;
   }
   
   .c-name {
     text-align: start;
     font-size: 25px;
+    cursor: pointer;
   }
   
   .continent-list {
@@ -47,24 +49,26 @@
   
   .footer-continent {
     color: #fff461;
+    font-size: 20px;
   }
   
   .footer-temp {
-    font-size: 28px;
+    font-size: 27px;
     text-align: right;
+    font-weight: bold;
   }
   
   .city-name {
-    font-size: 24px;
+    font-size: 20px;
   }
   
   .humid-percent {
     text-align: right;
     align-self: end;
-    font-size: 26px;
+    font-size: 25px;
   }
   
-  @media (max-width: 750px) {
+  @media (max-width: 1000px) {
         /*section3*/
   
     .continent-title {
@@ -101,6 +105,11 @@
       font-size: 15px;
       justify-content: center;
       padding: 5px;
+    }
+
+    .footer-continent {
+      color: #fff461;
+      font-size: 18px;
     }
   
     .footer-temp {
