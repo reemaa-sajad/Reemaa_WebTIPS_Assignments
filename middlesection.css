@@ -1,0 +1,141 @@
+.body-section {
+    display: grid;
+    background-color: black;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+  }
+  
+  .first-row {
+    display: grid;
+    grid-template-columns: 65% 5% 5% 5% 7% 13%;
+    grid-auto-columns: 100%;
+    color: #ffffff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 25px;
+  }
+  
+  .top-title {
+    padding-left: 40%;
+    margin-top: 10px;
+  }
+  
+  .cursor-sun, .cursor-snow, .cursor-rain {
+    cursor: pointer;
+  }
+  
+  .displaytop {
+    font-size: 15px;
+    margin-top: 5px;
+  }
+  
+  .inputcity {
+    background-color: rgba(131, 131, 131, 0.25);
+    font-size: 15px;
+    color: #ffffff;
+    width: 40px;
+    height: 25px;
+  }
+  
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    opacity: 1;
+  }
+  
+  .second-row {
+    display: flex;
+    justify-content: flex-start;
+    overflow-x: scroll;
+    column-gap: 40px;
+    padding: 20px 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  
+  .card {
+    padding: 20px;
+    min-width: 300px;
+    min-height: 300px;
+    margin-bottom: 2rem;
+    background-color: #181818;
+    background-image: url(/images/kolkata.svg);
+    background-position-x: right;
+    background-position-y: bottom;
+    background-repeat: no-repeat;
+    background-size: 60%;
+    color: #ffffff;
+    font-size: 20px;
+    border-radius: 10px;
+    transition: transform 0.2s;
+  }
+  
+  .card:hover {
+    transform: scale(1.2);
+  }
+  
+  .dandt {
+    font-size: 20px;
+  }
+  
+  .city-temp {
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  .date {
+    color: #ffffff;
+    font-size: 30px;
+    margin-top: 15px;
+    margin-bottom:15px;
+  }
+  
+  .time {
+    margin-bottom: 5px;
+  }
+  
+  .sun {
+    margin-top: -4px;
+    height: 25px;
+  }
+  
+  .mid-humidity,
+  .mid-precip {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  
+  .changesize {
+    font-size: 20px;
+  }
+  
+  @media (max-width: 1000px) {
+      .first-row {
+          display: grid;
+          grid-template-columns: 40% 10% 10% 10% 20% 10%;
+          color: #ffffff;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          font-size: 15px;
+        }
+      
+        .inputcity {
+          background-color: rgba(131, 131, 131, 0.25);
+          font-size: 10px;
+          color: #ffffff;
+          width: 28px;
+          height: 20px;
+        }
+      
+        .top-title {
+          padding-left: 10%;
+        }
+        .row {
+          overflow-x: scroll;
+        }
+      
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+        opacity: 1;
+        }
+  }

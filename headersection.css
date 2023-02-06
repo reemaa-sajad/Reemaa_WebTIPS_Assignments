@@ -1,0 +1,162 @@
+.header-section {
+    display: grid;
+    grid-template-columns: 10% 20% 10% 10% 50%;
+    padding-top: 30px;
+    margin: 10px;
+  }
+  
+  .logo {
+    height: 115px;
+  }
+  
+  .dropdown {
+    font-size: 35px;
+    border: 0;
+    background-color: rgba(131, 131, 131, 0.25);
+    font-family: "Roboto", sans-serif;
+    color: #ffffff;
+    padding: 10px;
+    margin-top: 50px;
+  }
+  
+  .date-time {
+    font-size: 30px;
+  }
+  
+  .sub {
+    font-size: 20px;
+    color: mistyrose;
+  }
+  
+  .header-time {
+    color: mistyrose;
+    padding-top: 10px;
+  }
+  
+  .header-date {
+    color: #ffffff;
+    font-size: 30px;
+  }
+  
+  .am-state {
+    height: 55px;
+    padding-top: 15px;
+  }
+  
+  .item3 {
+    color: #ffffff;
+    font-size: 30px;
+    padding-right: 17%;
+    padding-top: 40px;
+    padding-left: 15px;
+  }
+  
+  .temp-celsius{
+    border-right: #ffffff dotted 2px;
+  }
+  
+  .temp-faren {
+    border-right: #ffffff dotted 2px;
+    margin-top: 50px;
+  }
+  
+  .temp-c,
+  .temp-f,
+  .humid,
+  .prec {
+    font-size: 20px;
+  }
+  
+  .celsius, .faren, .humid-num, .precip-level{
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bolder;
+  }
+  
+  .header-precip{
+    margin-top: 50px;
+  }
+  
+  .item4 {
+    color: #ffffff;
+    font-size: 30px;
+    padding-left: 2%;
+    padding-top: 40px;
+    padding-left: 15px;
+  }
+  
+  .item5 {
+    padding-left: 10px;
+    padding-top: 5px;
+  }
+  
+  .clock {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    color: #ffffff;
+    padding-top: 35px;
+    padding-bottom: 20px;
+  }
+  
+  .lines {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 70px;
+    color: #ffffff;
+    padding: 0px 20px 25px 20px;
+  }
+  
+  .lines-alt{
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 70px;
+      color: #C4C4C4;
+      padding: 0px 20px 25px 20px;
+  }
+  
+  .clouds {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+  }
+  
+  .degree {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    color: #ffffff;
+    padding-left: 5px;
+    padding: 0px 20px 30px 20px;
+  }
+  
+  @media (max-width: 1000px) {
+      .header-section {
+          grid-template-columns: 20% 40% 20% 20%;
+        }
+      
+        .logo {
+          height: 100px;
+        }
+      
+        .dropdown {
+          font-size: 30px;
+          border: 0;
+          background-color: rgba(131, 131, 131, 0.25);
+          color: #ffffff;
+          font-family: Arial, Helvetica, sans-serif;
+          padding: 10px;
+          margin-top: 50px;
+        }
+      
+        .temp-c,
+        .temp-f,
+        .humid,
+        .prec {
+          font-size: 20px;
+        }
+      
+        .item5 {
+          grid-column: 1/5;
+        }
+  }
