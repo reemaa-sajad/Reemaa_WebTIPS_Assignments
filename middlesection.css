@@ -217,6 +217,7 @@
   .mid-precip {
     font-size: 20px;
     margin-bottom: 15px;
+    padding-right: 10px;
   }
 
   .humid-icon, .precip-icon{

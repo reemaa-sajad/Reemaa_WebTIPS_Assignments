@@ -16,6 +16,7 @@ fetch("https://soliton.glitch.me/all-timezone-cities")
     obj.sortContinent();
     //setInterval(obj.sortContinent.bind(obj),60000);
   });
+})();
 
 class Base {
   constructor(data) {
