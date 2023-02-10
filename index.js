@@ -16,6 +16,7 @@ fetch("http://localhost:8000/allCities")
     obj.sortContinent();
     //setInterval(obj.sortContinent.bind(obj),60000);
   });
+})();
 
 class Base {
   constructor(data) {
