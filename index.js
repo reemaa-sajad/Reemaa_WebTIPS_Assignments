@@ -1,63 +1,72 @@
- fetch("data.json")
+var weather_data;
+let getArr = [];
+let weatherChoice;
+
+const monthArr = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "June",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+
+(function() {
+  fetch("data.json")
   .then((data) => data.json())
   .then((result) => {
-    let obj=new Base(result);
-    obj.setCity();
-    obj.initCity();
-    setInterval(obj.callChange.bind(obj,1000));
-    obj.displayCards('sunny');
-    setInterval(obj.display.bind(obj,1000));
-    obj.sortContinent();
-    setInterval(obj.sortContinent.bind(obj,60000));
+    weather_data = result;
+    setCity();
+    initCity(); 
+    displayCards('sunny');
   });
+})();
 
-function Base(data){
-  this.data=data;
-  this.monthArr = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "June",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-  this.weatherChoice = "sunny";
-  this.getArr = [];
-  this.continentOrder = 0;
-  this.temperatureOrder = 0;
-  document.querySelector("#change-values").addEventListener("input", this.callChange.bind(this));
-  document.querySelector("#sunny-button").addEventListener("click", this.displayCards.bind(this,'sunny'));
-  document.querySelector("#cold-button").addEventListener("click", this.displayCards.bind(this,'snowflake'));
-  document.querySelector("#rainy-button").addEventListener("click", this.displayCards.bind(this,'rainy'));
-  document.querySelector("#display-number").addEventListener("click", this.setMinMax.bind(this));
-  document.querySelector(".scroll-left").addEventListener("click", this.scrolLeft.bind(this));
-  document.querySelector(".scroll-right").addEventListener("click", this.scrollRight.bind(this));
-  document.querySelector(".c-name").addEventListener("click", this.continentButton.bind(this));
-  document.querySelector(".temp").addEventListener("click", this.tempButton.bind(this));
-}
-//Header section
-
-//Function to initialize city values in dropdown 
-Base.prototype.setCity = function(){
-  this.city = Object.keys(this.data);
-  let option = ``;
-  for (let i = 0; i < this.city.length; i++) {
-    option += `<option>${this.city[i]}</option>`;
+function setCity() {
+  var city = Object.keys(weather_data);
+  var option = ``;
+  for (var i = 0; i < city.length; i++) {
+    option += `<option>${city[i]}</option>`;
   }
   document.querySelector("#dropdown").innerHTML = option;
 }
 
-//Function to initially load page with city details
-Base.prototype.initCity = function(){
-  document.querySelector("#change-values").value = this.city[6];
-  this.change();
+function initCity() {
+    city = Object.keys(weather_data); 
+    document.querySelector("#change-values").value = city[1];
+    change();
+};
+
+function callChange() {
+     var city = Object.keys(weather_data);
+     let cityGiven = document.querySelector("#change-values").value;
+     let flag = 0;
+     for(let i = 0; i < city.length; i++)
+     {
+         if(cityGiven == city[i]){
+            change();
+            flag = 1;
+        }
+    } 
+    if (flag == 0){
+         setNullVal(); 
+    }
 }
+
+//get temperature in farenheit
+let far;
+function changetoFarenheit(val) {
+  let farenheit = val * 1.8 + 32;
+  return farenheit;
+}
+
+function change() {
 
 //Function to change the weather values displayed in header section based on city chosen by user
 Base.prototype.change = function(){
