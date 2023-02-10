@@ -1,4 +1,24 @@
- fetch("data.json")
+var weather_data;
+let getArr = [];
+let weatherChoice;
+
+const monthArr = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "June",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+
+(function() {
+  fetch("data.json")
   .then((data) => data.json())
   .then((result) => {
     let obj=new Base(result);
@@ -10,6 +30,7 @@
     obj.sortContinent();
     setInterval(obj.sortContinent.bind(obj,60000));
   });
+})();
 
 class Base {
   constructor(data) {
