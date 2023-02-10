@@ -45,14 +45,23 @@
   .second-row {
     display: flex;
     justify-content: flex-start;
-    overflow-x: scroll;
     column-gap: 40px;
     padding: 20px 40px;
     margin-left: 10px;
     margin-right: 10px;
   }
+
+  .with-arrow {
+    display: flex;
+    justify-content: flex-start;
+    overflow-x: scroll;
+    position: relative;
+  }
   
-  .card {
+  .with-arrow::-webkit-scrollbar {
+    display: none;}
+
+  .card0, .card1, .card2, .card3, .card4, .card5, .card6, .card7, .card8, .card9, .card10 {
     padding: 20px;
     min-width: 300px;
     min-height: 300px;
@@ -83,6 +92,10 @@
     justify-content: space-between;
     margin-bottom: 15px;
   }
+
+  .mid-temp{
+    display: flex;
+  }
   .date {
     color: #ffffff;
     font-size: 30px;
@@ -97,12 +110,39 @@
   .sun {
     margin-top: -4px;
     height: 25px;
+    padding-right: 10px;
   }
-  
+  .scroll-right{ 
+    right: 5px;
+    cursor: pointer; 
+    margin-bottom: 5px; 
+    margin-right: 5px;
+    position: absolute;
+    background-color: white;
+    color: #181818;
+    align-self: center;
+    border-radius: 50%;   
+    padding: 15px;
+  }
+
+  .scroll-left{
+    left: 5px;
+    cursor: pointer; 
+    margin-bottom: 5px; 
+    margin-right: 5px;
+    position: absolute;
+    background-color: white;
+    color: #181818;
+    align-self: center;
+    border-radius: 50%;   
+    padding: 15px;
+  }
+
   .mid-humidity,
   .mid-precip {
     font-size: 20px;
     margin-bottom: 15px;
+    padding-right: 10px;
   }
   
   .changesize {

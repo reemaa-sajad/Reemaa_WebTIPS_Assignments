@@ -79,12 +79,12 @@
                 <div>|</div>
             </div>
             <div class="clouds">
-                <div ><img id="weather-image1" src="/images/Weather_Icons/snowflakeIcon.svg"></div>
-                <div ><img id="weather-image2" src="/images/Weather_Icons/cloudyIcon.svg"></div>
-                <div ><img id="weather-image3" src="/images/Weather_Icons/rainyIcon.svg"></div>
-                <div ><img id="weather-image4" src="/images/Weather_Icons/windyIcon.svg"></div>
-                <div ><img id="weather-image5" src="/images/Weather_Icons/sunnyIcon.svg"></div>
-                <div ><img id="weather-image6" src="/images/Weather_Icons/windyIcon.svg"></div>
+                <div><img id="weather-image1" src="/images/Weather_Icons/snowflakeIcon.svg"></div>
+                <div><img id="weather-image2" src="/images/Weather_Icons/cloudyIcon.svg"></div>
+                <div><img id="weather-image3" src="/images/Weather_Icons/rainyIcon.svg"></div>
+                <div><img id="weather-image4" src="/images/Weather_Icons/windyIcon.svg"></div>
+                <div><img id="weather-image5" src="/images/Weather_Icons/sunnyIcon.svg"></div>
+                <div><img id="weather-image6" src="/images/Weather_Icons/windyIcon.svg"></div>
             </div>
             <div class="degree">
                 <div id="temp1">6</div>
@@ -101,97 +101,43 @@
     <div class="body-section">
         <div class="first-row">
             <div class="top-title">Top cities around the world</div>
-            <div><img class="cursor-sun" src="/images/Weather_Icons/sunnyIcon.svg"></div>
-            <div><img class="cursor-snow" src="/images/Weather_Icons/snowflakeIcon.svg"></div>
-            <div><img class="cursor-rain" src="/images/Weather_Icons/rainyIcon.svg"></div>
+            <div><img id="sunny-button" onclick="displayCards('sunny')" class="cursor-sun"
+                    src="/images/Weather_Icons/sunnyIcon.svg"></div>
+            <div><img id="cold-button" onclick="displayCards('snowflake')" class="cursor-snow"
+                    src="/images/Weather_Icons/snowflakeIcon.svg"></div>
+            <div><img id="rainy-button" onclick="displayCards('rainy')" class="cursor-rain"
+                    src="/images/Weather_Icons/rainyIcon.svg"></div>
             <div class="displaytop">
                 <p>Display Top</p>
             </div>
             <div>
-                <input class="inputcity" type="number" name="cities" step="1" min="3" max="10" value="4">
+                <input onchange="setMinMax()" id="display-number" class="inputcity" type="number" name="cities" step="1"
+                    min="3" max="10" value="3">
             </div>
         </div>
-        <div class="second-row">
-            <div class="card">
-                <div class="city-temp">
-                    <p>New Delhi</p>
-                    <p> <img class="sun" src="/images/Weather_Icons/sunnyIcon.svg"> 25 °C</p>
-                </div>
-                <div class="changesize time">10:00 AM</div>
-                <div class="changesize date">2-MAR-2020</div>
-                <div class="dandt">
-                    <p class="mid-humidity"><img src="/images/Weather_Icons/humidityIcon.svg"> 53 %</p>
-                    <p class="mid-precip"><img src="/images/Weather_Icons/precipitationIcon.svg"> 10 %</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="city-temp">
-                    <p>New Delhi</p>
-                    <p> <img class="sun" src="/images/Weather_Icons/sunnyIcon.svg"> 25 °C</p>
-                </div>
-                <div class="changesize time">10:00 AM</div>
-                <div class="changesize date">2-MAR-2020</div>
-                <div class="dandt">
-                    <p class="mid-humidity"><img src="/images/Weather_Icons/humidityIcon.svg"> 53 %</p>
-                    <p class="mid-precip"><img src="/images/Weather_Icons/precipitationIcon.svg"> 10 %</p>
+        <button onclick="scroll_Left()" class="scroll-left">&#8592;</button>
+        <div class="with-arrow">
+            
+            <div id="leftdiv" class="second-row">
+                <div class="card0">
+                    <div class="city-temp">
+                        <p>New Delhi</p>
+                        <div class="mid-temp">
+                            <img class="sun" src="/images/Weather_Icons/sunnyIcon.svg">
+                            <p> 25 °C</p>
+                        </div>
+                    </div>
+                    <div class="changesize time">10:00 AM</div>
+                    <div class="changesize date">2-MAR-2020</div>
+                    <div class="dandt">
+                        <p class="mid-humidity"><img src="/images/Weather_Icons/humidityIcon.svg"> 53 %</p>
+                        <p class="mid-precip"><img src="/images/Weather_Icons/precipitationIcon.svg"> 10 %</p>
+                    </div>
                 </div>
             </div>
-
-            <div class="card">
-                <div class="city-temp">
-                    <p>New Delhi</p>
-                    <p> <img class="sun" src="/images/Weather_Icons/sunnyIcon.svg"> 25 °C</p>
-                </div>
-                <div class="changesize time">10:00 AM</div>
-                <div class="changesize date">2-MAR-2020</div>
-                <div class="dandt">
-                    <p class="mid-humidity"><img src="/images/Weather_Icons/humidityIcon.svg"> 53 %</p>
-                    <p class="mid-precip"><img src="/images/Weather_Icons/precipitationIcon.svg"> 10 %</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="city-temp">
-                    <p>New Delhi</p>
-                    <p> <img class="sun" src="/images/Weather_Icons/sunnyIcon.svg"> 25 °C</p>
-                </div>
-                <div class="changesize time">10:00 AM</div>
-                <div class="changesize date">2-MAR-2020</div>
-                <div class="dandt">
-                    <p class="mid-humidity"><img src="/images/Weather_Icons/humidityIcon.svg"> 53 %</p>
-                    <p class="mid-precip"><img src="/images/Weather_Icons/precipitationIcon.svg"> 10 %</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="city-temp">
-                    <p>New Delhi</p>
-                    <p> <img class="sun" src="/images/Weather_Icons/sunnyIcon.svg"> 25 °C</p>
-                </div>
-                <div class="changesize time">10:00 AM</div>
-                <div class="changesize date">2-MAR-2020</div>
-                <div class="dandt">
-                    <p class="mid-humidity"><img src="/images/Weather_Icons/humidityIcon.svg"> 53 %</p>
-                    <p class="mid-precip"><img src="/images/Weather_Icons/precipitationIcon.svg"> 10 %</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="city-temp">
-                    <p>New Delhi</p>
-                    <p> <img class="sun" src="/images/Weather_Icons/sunnyIcon.svg"> 25 °C</p>
-                </div>
-                <div class="changesize time">10:00 AM</div>
-                <div class="changesize date">2-MAR-2020</div>
-                <div class="dandt">
-                    <p class="mid-humidity"><img src="/images/Weather_Icons/humidityIcon.svg"> 53 %</p>
-                    <p class="mid-precip"><img src="/images/Weather_Icons/precipitationIcon.svg"> 10 %</p>
-                </div>
-            </div>
-
-
+            
         </div>
+        <button onclick="scrollRight()" class="scroll-right">&#8594;</button>
     </div>
 
     <!-- Footer section -->
