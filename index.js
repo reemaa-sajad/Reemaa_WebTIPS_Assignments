@@ -362,14 +362,13 @@ function displayCards(val){
 
 }
 
-function scrollLeft(){
+function scrolLeft(){
   console.log("Inside scroll left");
-  document.querySelector("#moveCards").scrollLeft -= 340;
+  document.querySelector(".with-arrow").scrollLeft -= 340;
 }
 
 function scrollRight(){
   document.querySelector(".with-arrow").scrollLeft +=340;
 }
-
 
 
