@@ -1,7 +1,9 @@
 var weather_data;
 let getArr = [];
 let weatherChoice;
-
+var cityValues = [];
+let continentOrder = 0;
+let temperatureOrder = 0;
 const monthArr = [
   "Jan",
   "Feb",
@@ -25,6 +27,8 @@ const monthArr = [
     setCity();
     initCity(); 
     displayCards('sunny');
+    sortContinent();
+    setInterval(sortContinent,60000);
   });
 })();
 
@@ -183,131 +187,40 @@ Base.prototype.change = function(){
       weatherImages[i].src = `/images/Weather_Icons/sunnyIcon.svg`;
     } 
   }
-
-}
-
-//Function to set weather values to null on getting invalid city input from user
-Base.prototype.setNullVal = function(){
-  //Logo
-  let logo = document.getElementById("logo");
-  logo.src = `/images/Icons_for_cities/city.png`;
-  //Box Border
-  document.querySelector("#change-values").style.borderColor = "red";
-  console.log("Wrong input")
-  //Temp C
-  document.getElementById("celsius").innerHTML = "NULL";
-  //Temp f
-  document.getElementById("faren").innerHTML = "NULL";
-  //Humidity level
-  document.getElementById("humid-num").innerHTML = "NULL";
-  //Precipitation
-  document.getElementById("precip-level").innerHTML = "NULL";
-  //Date and Time
-  document.getElementById("header-time").innerHTML = "Invalid city name!";
-  document.getElementById("header-date").innerHTML = "";
-  //Hourly Time
-  for(let i=0; i<6; i++)
-  {
-    document.getElementById(`current-time${i}`).innerHTML = "-";
-  }
-  //Hourly Temperature
-  for(let i=1; i<=6; i++){
-      document.getElementById(`temp${i}`).innerHTML = "NA";
-  }
-  //Weather icon for hourly temperature
-  for(let i=1; i<=6; i++)
-  {
-      document.getElementById(`weather-image${i}`).src=`/images/Weather_Icons/close.png`;
-  }
-}
-
-//Function to check whether the input given by the user is valid or invalid and display results accordingly
-Base.prototype.callChange = function(){
-  let cityGiven = document.querySelector("#change-values").value;
-  let flag = 0;
-  for(let i = 0; i < this.city.length; i++)
-    {
-      if(cityGiven == this.city[i]){
-        flag = 1;
-        this.change();
-      }
-    } 
-    if (flag == 0){
-      this.setNullVal(); 
+};
+setInterval(change, 1000);
+function setNullVal(){
+    //Box Border
+    document.querySelector("#change-values").style.borderColor = "red";
+    //Logo
+    var logo = document.getElementById("logo");
+    logo.src = `/images/Icons_for_cities/city.png`;
+    //Temp C
+    document.getElementById("celsius").innerHTML = "NULL";
+    //Temp f
+    document.getElementById("faren").innerHTML = "NULL";
+    //Humidity level
+    document.getElementById("humid-num").innerHTML = "NULL";
+    //Precipitation
+    document.getElementById("precip-level").innerHTML = "NULL";
+    //Date and Time
+    document.getElementById("header-time").innerHTML = "Invalid city name!";
+    document.getElementById("header-date").innerHTML = "";
+     //Hourly Time
+     for(let i=0; i<6; i++)
+     {
+         document.getElementById(`current-time${i}`).innerHTML = "-";
+     }
+    //Hourly Temperature
+    for(let i=1; i<=6; i++){
+        document.getElementById(`temp${i}`).innerHTML = "NA";
     }
-}
-
-//Middle section
-
-//Function to get user choice and select the cities based on the weather specifications for the given user choice
-Base.prototype.displayCards = function(val){
-  this.weatherChoice = val;
-  this.getArr = [];
-  this.cityValues = Object.values(this.data);
-  if (this.weatherChoice == "sunny"){
-    document.getElementById("sunny-button").style.borderBottom = "2px solid #1E90FF";
-    document.getElementById("cold-button").style.borderBottom = "none";
-    document.getElementById("rainy-button").style.borderBottom = "none";
-    for(let i=0; i<this.cityValues.length; i++)
+    //Weather icon for hourly temperature
+    for(let i=1; i<=6; i++)
     {
-      if( (parseInt(this.cityValues[i].temperature) > 29) 
-        && (parseInt(this.cityValues[i].humidity) < 50) 
-        && (parseInt(this.cityValues[i].precipitation) >= 50) ){
-          this.getArr.push(this.cityValues[i]);
-        }
+        document.getElementById(`weather-image${i}`).src=`/images/Weather_Icons/close.png`;
     }
-  } else if (this.weatherChoice == "snowflake")
-  {
-    document.getElementById("sunny-button").style.borderBottom = "none";
-    document.getElementById("cold-button").style.borderBottom = "2px solid #1E90FF";
-    document.getElementById("rainy-button").style.borderBottom = "none";
-    for(let i=0; i<this.cityValues.length; i++)
-    {
-      if( (parseInt(this.cityValues[i].temperature)>=20 && parseInt(this.cityValues[i].temperature) < 28) 
-      && (parseInt(this.cityValues[i].humidity) > 50) 
-      && (parseInt(this.cityValues[i].precipitation) < 50))
-      {
-        this.getArr.push(this.cityValues[i]);
-      }
-    }
-  } else if(this.weatherChoice == "rainy"){
-    document.getElementById("sunny-button").style.borderBottom = "none";
-    document.getElementById("cold-button").style.borderBottom = "none";
-    document.getElementById("rainy-button").style.borderBottom = "2px solid #1E90FF";
-    for(let i=0; i<this.cityValues.length; i++)
-    {
-      if( (parseInt(this.cityValues[i].temperature) < 20) 
-        && (parseInt(this.cityValues[i].humidity) >= 50) ){
-          this.getArr.push(this.cityValues[i])
-        }
-    }
-  }
-  this.sortCity();
-}
-
-//Function to sort the selected cities 
-Base.prototype.sortCity = function()
-{
-  if(this.weatherChoice=="sunny")
-  {
-    this.getArr.sort((a,b)=>{
-      return parseInt(b.temperature)-parseInt(a.temperature);
-    })
-  } 
-  else if(this.weatherChoice=="snowflake")
-  {
-    this.getArr.sort((a,b)=>{
-      return parseInt(b.precipitation)-parseInt(a.precipitation);
-    })
-  } 
-  else
-  {
-    this.getArr.sort((a,b)=>{
-      return parseInt(b.humidity)-parseInt(a.humidity);
-    })
-  } 
-  this.setMinMax();
-}
+};
 
 //Function to specify the city cards to be displayed
 Base.prototype.setMinMax = function()
@@ -423,54 +336,57 @@ Base.prototype.sortContinent = function()
     }  
   }  
 
-  else
-  {     
-    if (this.temperatureOrder == 0)
-    {    this.cityValues.sort((a, b) => 
-      {        
-        if (a.timeZone.split("/")[0] === b.timeZone.split("/")[0]) 
-        {      
-          return parseInt(a.temperature) < parseInt(b.temperature) ? -1 : 1;     
-        } 
-        else 
-        {      
-          return b.timeZone.split("/")[0] < a.timeZone.split("/")[0] ? -1 : 1;     
-        }    
-      });   
-    } 
-    else 
-    {    
-      this.cityValues.sort((a, b) => 
-      {         
-        if (a.timeZone.split("/")[0] === b.timeZone.split("/")[0]) 
-        {      
-          return parseInt(b.temperature) < parseInt(a.temperature) ? -1 : 1;     
-        } 
-        else 
-        {      
-          return b.timeZone.split("/")[0] < a.timeZone.split("/")[0] ? -1 : 1;     
-        }    
-      });   
-    }  
+function displayCards(val){
+  weatherChoice = val;
+  getArr = [];
+  cityValues= Object.values(weather_data);
+  
+
+  if (weatherChoice == "sunny"){
+    document.getElementById("sunny-button").style.borderBottom = "2px solid #1E90FF";
+    document.getElementById("cold-button").style.borderBottom = "none";
+    document.getElementById("rainy-button").style.borderBottom = "none";
+    for(let i=0; i<cityValues.length; i++)
+    {
+      if( (parseInt(cityValues[i].temperature) > 29) 
+        && (parseInt(cityValues[i].humidity) < 50) 
+        && (parseInt(cityValues[i].precipitation) >= 50) ){
+          getArr.push(cityValues[i]);
+        }
+    }
+  } else if (weatherChoice == "snowflake")
+  {
+    document.getElementById("sunny-button").style.borderBottom = "none";
+    document.getElementById("cold-button").style.borderBottom = "2px solid #1E90FF";
+    document.getElementById("rainy-button").style.borderBottom = "none";
+    for(let i=0; i<cityValues.length; i++)
+    {
+      if( (parseInt(cityValues[i].temperature)>=20 && parseInt(cityValues[i].temperature) < 28) 
+      && (parseInt(cityValues[i].humidity) > 50) 
+      && (parseInt(cityValues[i].precipitation) < 50))
+      {
+        getArr.push(cityValues[i]);
+      }
+    }
+  } else if(weatherChoice == "rainy"){
+    document.getElementById("sunny-button").style.borderBottom = "none";
+    document.getElementById("cold-button").style.borderBottom = "none";
+    document.getElementById("rainy-button").style.borderBottom = "2px solid #1E90FF";
+    for(let i=0; i<cityValues.length; i++)
+    {
+      if( (parseInt(cityValues[i].temperature) < 20) 
+        && (parseInt(cityValues[i].humidity) >= 50) ){
+          getArr.push(cityValues[i])
+        }
+    }
   }
 
   this.displayContinents();
 
 }
 
-//Function to call sortContinent function on clicking continent button
-Base.prototype.continentButton = function(){
-  if(this.continentOrder==0)
-  {   
-    this.continentOrder=1;
-    document.querySelector(".cont-selector").src = "/images/General_Images_&_Icons/arrowDown.svg";  
-  }  
-  else if(this.continentOrder==1)
-  {   
-    this.continentOrder=0;   
-    document.querySelector(".cont-selector").src = "/images/General_Images_&_Icons/arrowUp.svg";  
-  }  
-  this.sortContinent(); 
+function scrolLeft(){
+  document.querySelector(".with-arrow").scrollLeft -= 340;
 }
 
 //Function to call sortContinent function on clicking temperature button
@@ -488,12 +404,118 @@ Base.prototype.tempButton = function(){
   this.sortContinent(); 
 }
 
-//Function to display the continents in user specified order
-Base.prototype.displayContinents = function(){
+//Task 3
+//Function to sort continents by alphabetical order
+function sortContinent()
+{
+  cityVal=Object.values(weather_data); 
+  if(continentOrder==0){ 
+    if(temperatureOrder==0)
+    {    
+      cityVal.sort((a, b) => 
+      {    
+        console.log(a.timeZone.split("/")[0]);    
+        if (a.timeZone.split("/")[0] === b.timeZone.split("/")[0]) 
+        {     
+          return parseInt(a.temperature) < parseInt(b.temperature) ? -1 : 1;    
+        } 
+        else 
+        {     
+          return a.timeZone.split("/")[0] < b.timeZone.split("/")[0] ? -1 : 1;    
+        }    
+      });   
+    }   
+    else
+    {    
+      allCities.sort((a, b) => 
+      {    
+        console.log(a.timeZone.split("/")[0]);    
+        if (a.timeZone.split("/")[0] === b.timeZone.split("/")[0]) 
+        {     
+          return parseInt(b.temperature) < parseInt(a.temperature) ? -1 : 1;    
+        } 
+        else 
+        {     
+          return a.timeZone.split("/")[0] < b.timeZone.split("/")[0] ? -1 : 1;    
+        }    
+      });   
+    }  
+  }  
+  
+  else
+  {     
+    if (temperatureOrder == 0)
+    {    cityVal.sort((a, b) => 
+      {     
+        console.log(a.timeZone.split("/")[0]);     
+        if (a.timeZone.split("/")[0] === b.timeZone.split("/")[0]) 
+        {      
+          return parseInt(a.temperature) < parseInt(b.temperature) ? -1 : 1;     
+        } 
+        else 
+        {      
+          return b.timeZone.split("/")[0] < a.timeZone.split("/")[0] ? -1 : 1;     
+        }    
+      });   
+    } 
+    else 
+    {    
+      cityVal.sort((a, b) => 
+      {     
+        console.log(a.timeZone.split("/")[0]);     
+        if (a.timeZone.split("/")[0] === b.timeZone.split("/")[0]) 
+        {      
+          return parseInt(b.temperature) < parseInt(a.temperature) ? -1 : 1;     
+        } 
+        else 
+        {      
+          return b.timeZone.split("/")[0] < a.timeZone.split("/")[0] ? -1 : 1;     
+        }    
+      });   
+    }  
+  }
+
+  displayContinent();
+
+}
+
+//Event listeners to call sortContinent function on clicking continent and temperature arrows
+document.querySelector(".c-name").addEventListener("click", function()
+{  
+  if(continentOrder==0)
+  {   
+    continentOrder=1;
+    document.querySelector(".cont-selector").src = "/images/General_Images_&_Icons/arrowDown.svg";  
+  }  
+  else if(continentOrder==1)
+  {   
+    continentOrder=0;   
+    document.querySelector(".cont-selector").src = "/images/General_Images_&_Icons/arrowUp.svg";  
+  }  
+  sortContinent(); 
+});
+
+document.querySelector(".temp").addEventListener("click", function()
+{  
+  if(temperatureOrder==0)
+  {   
+    temperatureOrder=1;
+    document.querySelector(".temp-selector").src = "/images/General_Images_&_Icons/arrowDown.svg";  
+  }  
+  else if(temperatureOrder==1)
+  {   
+    temperatureOrder=0;   
+    document.querySelector(".temp-selector").src = "/images/General_Images_&_Icons/arrowUp.svg";  
+  }  
+  sortContinent(); 
+});
+
+//Function to display the continents in user sepcified order
+function displayContinent(){
   let continentCards = "";
   for (let i=0; i<12; i++){
-    let currentTime = new Date().toLocaleString("en-US", {
-      timeZone: this.cityValues[i].timeZone,
+    var currentTime = new Date().toLocaleString("en-US", {
+      timeZone: cityVal[i].timeZone,
       timeStyle: "medium",
       hourCycle: "h12",
     });
@@ -504,18 +526,20 @@ Base.prototype.displayContinents = function(){
 
 
     continentCards += `<div class="continent${i}">
-    <div class="footer-continent">${this.cityValues[i].timeZone.split("/")[0]}</div>
-    <div class="footer-temp">${this.cityValues[i].temperature}</div>
+    <div class="footer-continent">${cityVal[i].timeZone.split("/")[0]}</div>
+    <div class="footer-temp">${cityVal[i].temperature}</div>
     <div class="city-name">
-      <div>${this.cityValues[i].cityName}</div>
+      <div>${cityVal[i].cityName}</div>
       <div class="current-time">${time}</div>
     </div>
     <div class="humid-percent">
-        <p> ${this.cityValues[i].humidity} <img src="/images/Weather_Icons/humidityIcon.svg" alt="raindrop"></p>
+        <p> ${cityVal[i].humidity} <img src="/images/Weather_Icons/humidityIcon.svg" alt="raindrop"></p>
     </div>
 </div>`
   }
 
   document.querySelector(".continent-list").innerHTML = continentCards;
+
+}
 
 }
