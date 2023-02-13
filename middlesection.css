@@ -112,6 +112,7 @@
     height: 25px;
     padding-right: 10px;
   }
+  
   .scroll-right{ 
     right: 5px;
     cursor: pointer; 
@@ -127,15 +128,16 @@
 
   .scroll-left{
     left: 5px;
+    align-self: center;
     cursor: pointer; 
     margin-bottom: 5px; 
     margin-right: 5px;
     position: absolute;
     background-color: white;
     color: #181818;
-    align-self: center;
     border-radius: 50%;   
     padding: 15px;
+    z-index: 3;
   }
 
   .mid-humidity,
