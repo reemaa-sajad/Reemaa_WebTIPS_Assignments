@@ -13,6 +13,7 @@
   
   .temp {
     display: flex;
+    display: flex;
     text-align: end;
     font-size: 25px;
     cursor: pointer;
