@@ -387,8 +387,7 @@ function sortContinent()
     if(temperatureOrder==0)
     {    
       cityVal.sort((a, b) => 
-      {    
-        console.log(a.timeZone.split("/")[0]);    
+      {       
         if (a.timeZone.split("/")[0] === b.timeZone.split("/")[0]) 
         {     
           return parseInt(a.temperature) < parseInt(b.temperature) ? -1 : 1;    
@@ -401,9 +400,8 @@ function sortContinent()
     }   
     else
     {    
-      allCities.sort((a, b) => 
-      {    
-        console.log(a.timeZone.split("/")[0]);    
+      cityVal.sort((a, b) => 
+      {        
         if (a.timeZone.split("/")[0] === b.timeZone.split("/")[0]) 
         {     
           return parseInt(b.temperature) < parseInt(a.temperature) ? -1 : 1;    
@@ -420,8 +418,7 @@ function sortContinent()
   {     
     if (temperatureOrder == 0)
     {    cityVal.sort((a, b) => 
-      {     
-        console.log(a.timeZone.split("/")[0]);     
+      {        
         if (a.timeZone.split("/")[0] === b.timeZone.split("/")[0]) 
         {      
           return parseInt(a.temperature) < parseInt(b.temperature) ? -1 : 1;     
@@ -435,8 +432,7 @@ function sortContinent()
     else 
     {    
       cityVal.sort((a, b) => 
-      {     
-        console.log(a.timeZone.split("/")[0]);     
+      {         
         if (a.timeZone.split("/")[0] === b.timeZone.split("/")[0]) 
         {      
           return parseInt(b.temperature) < parseInt(a.temperature) ? -1 : 1;     
