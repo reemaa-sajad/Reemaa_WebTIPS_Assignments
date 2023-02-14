@@ -32,6 +32,7 @@ const monthArr = [
   });
 })();
 
+
 function setCity() {
   var city = Object.keys(weather_data);
   var option = ``;
