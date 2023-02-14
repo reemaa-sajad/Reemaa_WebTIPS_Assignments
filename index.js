@@ -29,10 +29,25 @@ const monthArr = [
     displayCards('sunny');
     sortContinent();
     setInterval(sortContinent,60000);
+    let obj=new Base(result);
+    obj.displayData();
+    obj.setCity();
   });
 })();
-//Header section
-//Function to initialize city values in dropdown 
+
+function Base(data){
+  this.data=data;
+  this.city=Object.keys(data);
+}
+Base.prototype.displayData=function(){
+  console.log("display",this.data);
+}
+
+Base.prototype.setCity = function(){
+  console.log("setCity",this.city);
+
+}
+
 function setCity() {
   var city = Object.keys(weather_data);
   var option = ``;
