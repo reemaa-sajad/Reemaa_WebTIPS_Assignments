@@ -505,7 +505,8 @@ function displayContinent(){
       <div class="current-time">${time}</div>
     </div>
     <div class="humid-percent">
-        <p> ${cityVal[i].humidity} <img src="/images/Weather_Icons/humidityIcon.svg" alt="raindrop"></p>
+    <img src="/images/Weather_Icons/humidityIcon.svg" alt="raindrop"> 
+    ${cityVal[i].humidity} 
     </div>
 </div>`
   }
