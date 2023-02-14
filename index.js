@@ -33,7 +33,9 @@ const monthArr = [
 })();
 //Header section
 
+
 //Function to initialize city values in dropdown 
+
 function setCity() {
   var city = Object.keys(weather_data);
   var option = ``;
