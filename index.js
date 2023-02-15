@@ -301,6 +301,15 @@ Base.prototype.setMinMax = function()
   else{ 
     this.slicedArr = this.getArr;
   }  
+  if(this.slicedArr.length < 4)
+    {
+      document.querySelector(".scroll-left").style.visibility = "hidden";
+      document.querySelector(".scroll-right").style.visibility = "hidden";
+    }
+    else{
+      document.querySelector(".scroll-left").style.visibility = "visible";
+      document.querySelector(".scroll-right").style.visibility = "visible";
+    }
   this.display();
 }
 
@@ -337,15 +346,7 @@ Base.prototype.display = function()
         <p class="mid-precip"><img src="/images/Weather_Icons/precipitationIcon.svg">${this.slicedArr[i].precipitation}</p>
     </div>
     </div>`
-    if(document.getElementById("display-number").value < 4)
-    {
-      document.querySelector(".scroll-left").style.visibility = "hidden";
-      document.querySelector(".scroll-right").style.visibility = "hidden";
-    }
-    else{
-      document.querySelector(".scroll-left").style.visibility = "visible";
-      document.querySelector(".scroll-right").style.visibility = "visible";
-    }
+    
 
   }
   document.querySelector(".second-row").innerHTML = weatherCards;
