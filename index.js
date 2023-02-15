@@ -32,7 +32,6 @@ const monthArr = [
     obj.sortContinent();
     setInterval(obj.sortContinent.bind(obj,60000));
   });
-})();
 
 class Base {
   constructor(data) {
@@ -500,13 +499,35 @@ class Base {
 
 
 
-//Task 3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Footer section
+
 //Function to sort continents by alphabetical order
-function sortContinent()
+Base.prototype.sortContinent = function()
 {
-  cityVal=Object.values(weather_data); 
-  if(continentOrder==0){ 
-    if(temperatureOrder==0)
+  if(this.continentOrder==0){ 
+    if(this.temperatureOrder==0)
     {    
       cityVal.sort((a, b) => 
       {    
@@ -537,7 +558,7 @@ function sortContinent()
       });   
     }  
   }  
-  
+
   else
   {     
     if (temperatureOrder == 0)
@@ -571,47 +592,46 @@ function sortContinent()
     }  
   }
 
-  displayContinent();
+  this.displayContinents();
 
 }
 
-//Event listeners to call sortContinent function on clicking continent and temperature arrows
-document.querySelector(".c-name").addEventListener("click", function()
-{  
-  if(continentOrder==0)
+//Function to call sortContinent function on clicking continent button
+Base.prototype.continentButton = function(){
+  if(this.continentOrder==0)
   {   
-    continentOrder=1;
+    this.continentOrder=1;
     document.querySelector(".cont-selector").src = "/images/General_Images_&_Icons/arrowDown.svg";  
   }  
-  else if(continentOrder==1)
+  else if(this.continentOrder==1)
   {   
-    continentOrder=0;   
+    this.continentOrder=0;   
     document.querySelector(".cont-selector").src = "/images/General_Images_&_Icons/arrowUp.svg";  
   }  
-  sortContinent(); 
-});
+  this.sortContinent(); 
+}
 
-document.querySelector(".temp").addEventListener("click", function()
-{  
-  if(temperatureOrder==0)
+//Function to call sortContinent function on clicking temperature button
+Base.prototype.tempButton = function(){
+  if(this.temperatureOrder==0)
   {   
-    temperatureOrder=1;
+    this.temperatureOrder=1;
     document.querySelector(".temp-selector").src = "/images/General_Images_&_Icons/arrowDown.svg";  
   }  
-  else if(temperatureOrder==1)
+  else if(this.temperatureOrder==1)
   {   
-    temperatureOrder=0;   
+    this.temperatureOrder=0;   
     document.querySelector(".temp-selector").src = "/images/General_Images_&_Icons/arrowUp.svg";  
   }  
-  sortContinent(); 
-});
+  this.sortContinent(); 
+}
 
-//Function to display the continents in user sepcified order
-function displayContinent(){
+//Function to display the continents in user specified order
+Base.prototype.displayContinents = function(){
   let continentCards = "";
   for (let i=0; i<12; i++){
-    var currentTime = new Date().toLocaleString("en-US", {
-      timeZone: cityVal[i].timeZone,
+    let currentTime = new Date().toLocaleString("en-US", {
+      timeZone: this.cityValues[i].timeZone,
       timeStyle: "medium",
       hourCycle: "h12",
     });
@@ -622,14 +642,14 @@ function displayContinent(){
 
 
     continentCards += `<div class="continent${i}">
-    <div class="footer-continent">${cityVal[i].timeZone.split("/")[0]}</div>
-    <div class="footer-temp">${cityVal[i].temperature}</div>
+    <div class="footer-continent">${this.cityValues[i].timeZone.split("/")[0]}</div>
+    <div class="footer-temp">${this.cityValues[i].temperature}</div>
     <div class="city-name">
-      <div>${cityVal[i].cityName}</div>
+      <div>${this.cityValues[i].cityName}</div>
       <div class="current-time">${time}</div>
     </div>
     <div class="humid-percent">
-        <p> ${cityVal[i].humidity} <img src="/images/Weather_Icons/humidityIcon.svg" alt="raindrop"></p>
+        <p> ${this.cityValues[i].humidity} <img src="/images/Weather_Icons/humidityIcon.svg" alt="raindrop"></p>
     </div>
 </div>`
   }
@@ -637,4 +657,3 @@ function displayContinent(){
   document.querySelector(".continent-list").innerHTML = continentCards;
 
 }
-*/
