@@ -50,7 +50,7 @@ function changetoFarenheit(val) {
   let farenheit = val * 1.8 + 32;
   return farenheit;
 }
-setInterval(change,1000);
+setInterval(callChange,1000);
 function change() {
   const monthArr = [
     "Jan",
