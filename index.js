@@ -16,7 +16,6 @@ fetch("https://soliton.glitch.me/all-timezone-cities")
     obj.sortContinent();
     //setInterval(obj.sortContinent.bind(obj),60000);
   });
-})();
 
 class Base {
   constructor(data) {
@@ -517,4 +516,3 @@ class Base {
     document.querySelector(".continent-list").innerHTML = continentCards;
   }
 }
-*/
