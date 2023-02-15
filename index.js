@@ -637,3 +637,4 @@ function displayContinent(){
   document.querySelector(".continent-list").innerHTML = continentCards;
 
 }
+*/
