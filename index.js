@@ -517,3 +517,4 @@ class Base {
     document.querySelector(".continent-list").innerHTML = continentCards;
   }
 }
+*/
