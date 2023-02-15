@@ -312,6 +312,15 @@ Base.prototype.setMinMax = function()
   else{ 
     this.slicedArr = this.getArr;
   }  
+  if(this.slicedArr.length < 4)
+    {
+      document.querySelector(".scroll-left").style.visibility = "hidden";
+      document.querySelector(".scroll-right").style.visibility = "hidden";
+    }
+    else{
+      document.querySelector(".scroll-left").style.visibility = "visible";
+      document.querySelector(".scroll-right").style.visibility = "visible";
+    }
   this.display();
 }
 
