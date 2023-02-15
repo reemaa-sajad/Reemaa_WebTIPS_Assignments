@@ -187,8 +187,7 @@ function change() {
     } 
   }
 };
-
-//Function to set weather values to null on getting invalid city input from user
+setInterval(callChange,1000);
 function setNullVal(){
     //Box Border
     document.querySelector("#change-values").style.borderColor = "red";
@@ -255,15 +254,6 @@ function display(slicedArr)
         <p class="mid-precip"><img src="/images/Weather_Icons/precipitationIcon.svg">${slicedArr[i].precipitation}</p>
     </div>
     </div>`
-    if(document.getElementById("display-number").value < 4)
-    {
-      document.querySelector(".scroll-left").style.visibility = "hidden";
-      document.querySelector(".scroll-right").style.visibility = "hidden";
-    }
-    else{
-      document.querySelector(".scroll-left").style.visibility = "visible";
-      document.querySelector(".scroll-right").style.visibility = "visible";
-    }
 
   }
   document.querySelector(".second-row").innerHTML = weatherCards;
@@ -288,6 +278,15 @@ function setMinMax()
   else{ 
     slicedArr = getArr;
   }  
+  if(slicedArr.length < 4)
+    {
+      document.querySelector(".scroll-left").style.visibility = "hidden";
+      document.querySelector(".scroll-right").style.visibility = "hidden";
+    }
+    else{
+      document.querySelector(".scroll-left").style.visibility = "visible";
+      document.querySelector(".scroll-right").style.visibility = "visible";
+    }
   display(slicedArr);
 }
 
