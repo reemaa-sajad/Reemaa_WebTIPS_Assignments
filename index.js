@@ -1,121 +1,78 @@
-var weather_data;
-let getArr = [];
-let weatherChoice;
-var cityValues = [];
-let continentOrder = 0;
-let temperatureOrder = 0;
-const monthArr = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "June",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
+
+// let getArr = [];
+// let weatherChoice;
+// var cityValues = [];
+// let continentOrder = 0;
+// let temperatureOrder = 0;
+
 
 (function() {
   fetch("data.json")
   .then((data) => data.json())
   .then((result) => {
-    weather_data = result;
-    setCity();
-    initCity(); 
-    displayCards('sunny');
-    sortContinent();
-    setInterval(sortContinent,60000);
+    // weather_data = result;
+    // initCity(); 
+    // displayCards('sunny');
+    // sortContinent();
+    // setInterval(sortContinent,60000);
     let obj=new Base(result);
     obj.displayData();
     obj.setCity();
+    obj.initCity();
   });
 })();
 
 function Base(data){
   this.data=data;
-  this.city=Object.keys(data);
+  this.monthArr = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "June",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  document.querySelector("#change-values").addEventListener("input", this.callChange.bind(this));
 }
 Base.prototype.displayData=function(){
   console.log("display",this.data);
 }
 
 Base.prototype.setCity = function(){
+  this.city = Object.keys(this.data);
   console.log("setCity",this.city);
-
-}
-
-function setCity() {
-  var city = Object.keys(weather_data);
-  var option = ``;
-  for (let cityName = 0; cityName < city.length; cityName++) {
-    option += `<option>${city[cityName]}</option>`;
+  let option = ``;
+  for (let i = 0; i < this.city.length; i++) {
+    option += `<option>${this.city[i]}</option>`;
   }
   document.querySelector("#dropdown").innerHTML = option;
 }
 
-//Function to initially load page with city details
-function initCity() {
-    city = Object.keys(weather_data); 
-    document.querySelector("#change-values").value = city[1];
-    change();
-};
-
-//Function to check whether the input given by the user is valid or invalid and display results accordingly
-function callChange() {
-     var city = Object.keys(weather_data);
-     let cityGiven = document.querySelector("#change-values").value.toLowerCase();
-     let flag = 0;
-     for(let userInput = 0; userInput < city.length; userInput++)
-     {
-         if(cityGiven == city[userInput]){
-            change();
-            flag = 1;
-        }
-    } 
-    if (flag === 0){
-         setNullVal(); 
-    }
+Base.prototype.initCity = function(){
+  console.log(this.city[5]);
+  document.querySelector("#change-values").value = this.city[5];
+  this.change();
 }
 
-//Function to get temperature in farenheit
-let far;
-function changetoFarenheit(val) {
-  let farenheit = val * 1.8 + 32;
-  return farenheit;
-}
-setInterval(callChange,1000);
+Base.prototype.change = function(){
+  const weatherImages = [
+    document.getElementById(`weather-image1`),
+    document.getElementById(`weather-image2`),
+    document.getElementById(`weather-image3`),
+    document.getElementById(`weather-image4`),
+    document.getElementById(`weather-image5`),
+    document.getElementById(`weather-image6`),
+  ];
 
-//Function to change the weather values displayed in header section based on city chosen by user
-function change() {
-
-  let weatherImages = [];
-  let weatherArray = [];
-  var city = Object.keys(weather_data);
-
-  var current_city = document.querySelector("#change-values").value.toLowerCase();
-  var logo = document.getElementById("logo");
-  let cel = weather_data[current_city].temperature.slice(0, -2);
-  var tzone = weather_data[current_city].timeZone;
-  var time = new Date().toLocaleString("en-US", {
-    timeZone: tzone,
-    timeStyle: "medium",
-    hourCycle: "h12",
-  });
-  let dateTimeArr = weather_data[current_city].dateAndTime.split(",");
-  let dateSplit = dateTimeArr[0];
-  let dateArr = dateSplit.split("/");
-  let dateInWords =
-    String(dateArr[1].padStart(2, "0")) +
-    "-" +
-    monthArr[dateArr[0] - 1] +
-    "-" +
-    dateArr[2];
-  let amPm = time.slice(-2);
-
+  const weatherArray = [];
+  let current_city = document.querySelector("#change-values").value;
+  let logo = document.getElementById("logo");
 
   //change the logo image
   logo.src = `/images/Icons_for_cities/${current_city}.svg`;
@@ -125,37 +82,51 @@ function change() {
 
   //temperature C
   document.getElementById("celsius").innerHTML =
-    weather_data[current_city].temperature;
+    this.data[current_city].temperature;
 
   //temperature F
-  far = changetoFarenheit(cel);
+  let cel = this.data[current_city].temperature.slice(0, -2);
+  let far = cel * 1.8 + 32;
   far = far.toPrecision(3);
   far += " F";
   document.getElementById("faren").innerHTML = far;
 
   // humidity level
   document.getElementById("humid-num").innerHTML =
-    weather_data[current_city].humidity;
+    this.data[current_city].humidity;
 
   //precipitation
   document.getElementById("precip-level").innerHTML =
-    weather_data[current_city].precipitation;
+    this.data[current_city].precipitation;
 
   //date and time
-  dateTimeArr = weather_data[current_city].dateAndTime.split(",");
-
+  let dateTimeArr = this.data[current_city].dateAndTime.split(",");
+  
   //Real time
+  let tzone = this.data[current_city].timeZone;
+  let time = new Date().toLocaleString("en-US", {
+    timeZone: tzone,
+    timeStyle: "medium",
+    hourCycle: "h12",
+  });
   document.getElementById("header-time").innerHTML = time;
 
   //date
+  let dateSplit = dateTimeArr[0];
+  let dateArr = dateSplit.split("/");
+  let dateInWords =
+    String(dateArr[1].padStart(2, "0")) +
+    "-" +
+    this.monthArr[dateArr[0] - 1] +
+    "-" +
+    dateArr[2];
   document.getElementById("header-date").innerHTML = dateInWords;
 
   //getting timeline on the right side of header
   document.getElementById(`current-time0`).innerHTML = "NOW";
   time = time.slice(0, 2);
   time = parseInt(time)+1;
-  console.log(time);
-  for (let timeDisplay = 1; timeDisplay < 6; timeDisplay++) {
+  for (let i = 1; i < 6; i++) {
     if (time > 12) {
       time = time - 12;
     }
@@ -173,69 +144,96 @@ function change() {
   }
 
   //getting temperature values on the right side of header
-  document.getElementById(`temp1`).innerHTML = weather_data[
+  document.getElementById(`temp1`).innerHTML = this.data[
     current_city
   ].temperature.slice(0, 2);
-  weatherArray[0] = weather_data[current_city].temperature.slice(0, 2);
-  weatherArray[5] = weather_data[current_city].temperature.slice(0, 2);
-  for (var i = 2; i < 6; i++) {
-    document.getElementById(`temp${i}`).innerHTML = weather_data[current_city].nextFiveHrs[i - 2].slice(0, 2);
-    weatherArray[i - 1] = weather_data[current_city].nextFiveHrs[i - 2].slice(0, 2);
+  weatherArray[0] = this.data[current_city].temperature.slice(0, 2);
+  weatherArray[5] = this.data[current_city].temperature.slice(0, 2);
+  for (let i = 2; i < 6; i++) {
+    document.getElementById(`temp${i}`).innerHTML = this.data[current_city].nextFiveHrs[i - 2].slice(0, 2);
+    weatherArray[i - 1] = this.data[current_city].nextFiveHrs[i - 2].slice(0, 2);
   }
-  document.getElementById(`temp6`).innerHTML = weather_data[
+  document.getElementById(`temp6`).innerHTML = this.data[
     current_city
   ].temperature.slice(0, 2);
 
   //getting the image icon for weather
-  for (let iterator = 0; iterator <= 5; iterator++) {
-    if (parseInt(weatherArray[iterator]) >= 23 && parseInt(weatherArray[iterator]) < 29) {
-      document.getElementById(`weather-image${iterator+1}`).src = "./images/Weather_Icons/cloudyIcon.svg";
+  for (let i = 0; i <= 5; i++) {
+    if (parseInt(weatherArray[i]) >= 23 && parseInt(weatherArray[i]) < 29) {
+      weatherImages[i].src = `/images/Weather_Icons/cloudyIcon.svg`;
     } else if (
-      parseInt(weatherArray[iterator]) >= 18 && parseInt(weatherArray[iterator]) <= 22) {
-        document.getElementById(`weather-image${iterator+1}`).src = "./images/Weather_Icons/windyIcon.svg";
-    } else if (parseInt(weatherArray[iterator]) <=0) {
-      document.getElementById(`weather-image${iterator+1}`).src = "./images/Weather_Icons/snowflakeIcon.svg";
-    } else if (parseInt(weatherArray[iterator]) < 18) {
-      document.getElementById(`weather-image${iterator+1}`).src = "./images/Weather_Icons/rainyIcon.svg";
-    } else if (parseInt(weatherArray[iterator]) >= 29) {
-      document.getElementById(`weather-image${iterator+1}`).src = "./images/Weather_Icons/sunnyIcon.svg";
+      parseInt(weatherArray[i]) >= 18 &&
+      parseInt(weatherArray[i]) <= 22
+    ) {
+      weatherImages[i].src = `/images/Weather_Icons/windyIcon.svg`;
+    } else if (parseInt(weatherArray[i]) <=0) {
+        weatherImages[i].src = `/images/Weather_Icons/snowflakeIcon.svg`;
+    } else if (parseInt(weatherArray[i]) < 18) {
+      weatherImages[i].src = `/images/Weather_Icons/rainyIcon.svg`;
+    } else if (parseInt(weatherArray[i]) >= 29) {
+      weatherImages[i].src = `/images/Weather_Icons/sunnyIcon.svg`;
     } 
   }
-};
-setInterval(callChange,1000);
 
-//Function to set weather values to null on getting invalid city input from user
-function setNullVal(){
-    //Box Border
-    document.querySelector("#change-values").style.borderColor = "red";
-    //Logo
-    var logo = document.getElementById("logo");
-    logo.src = `/images/Icons_for_cities/city.png`;
-    //Temp C
-    document.getElementById("celsius").innerHTML = "NULL";
-    //Temp f
-    document.getElementById("faren").innerHTML = "NULL";
-    //Humidity level
-    document.getElementById("humid-num").innerHTML = "NULL";
-    //Precipitation
-    document.getElementById("precip-level").innerHTML = "NULL";
-    //Date and Time
-    document.getElementById("header-time").innerHTML = "Invalid city name!";
-    document.getElementById("header-date").innerHTML = "";
-     //Hourly Time
-     for(let hourlyTime=0; hourlyTime<6; hourlyTime++)
-     {
-         document.getElementById(`current-time${hourlyTime}`).innerHTML = "-";
-     }
-    //Hourly Temperature
-    for(let hourlyTemp=1; hourlyTemp<=6; hourlyTemp++){
-        document.getElementById(`temp${hourlyTemp}`).innerHTML = "NA";
-    }
-    //Weather icon for hourly temperature
-    for(let hourlyWeather=1; hourlyWeather<=6; hourlyWeather++)
+}
+
+Base.prototype.setNullVal = function(){
+  //Logo
+  let logo = document.getElementById("logo");
+  logo.src = `/images/Icons_for_cities/city.png`;
+  //Box Border
+  document.querySelector("#change-values").style.borderColor = "red";
+  //Temp C
+  document.getElementById("celsius").innerHTML = "NULL";
+  //Temp f
+  document.getElementById("faren").innerHTML = "NULL";
+  //Humidity level
+  document.getElementById("humid-num").innerHTML = "NULL";
+  //Precipitation
+  document.getElementById("precip-level").innerHTML = "NULL";
+  //Date and Time
+  document.getElementById("header-time").innerHTML = "Invalid city name!";
+  document.getElementById("header-date").innerHTML = "";
+  //Hourly Time
+  for(let i=0; i<6; i++)
+  {
+    document.getElementById(`current-time${i}`).innerHTML = "-";
+  }
+  //Hourly Temperature
+  for(let i=1; i<=6; i++){
+      document.getElementById(`temp${i}`).innerHTML = "NA";
+  }
+  //Weather icon for hourly temperature
+  for(let i=1; i<=6; i++)
+  {
+      document.getElementById(`weather-image${i}`).src=`/images/Weather_Icons/close.png`;
+  }
+
+}
+
+Base.prototype.callChange = function(){
+  let cityGiven = document.querySelector("#change-values").value;
+  let flag = 0;
+  for(let i = 0; i < this.city.length; i++)
     {
-        document.getElementById(`weather-image${hourlyWeather}`).src=`/images/Weather_Icons/close.png`;
+      if(cityGiven == this.city[i]){
+        this.change();
+        flag = 1;
+      }
+    } 
+    if (flag == 0){
+      this.setNullVal(); 
     }
+}
+
+
+
+/*
+
+
+setInterval(change, 1000);
+function setNullVal(){
+   
 };
 //Middle section
 
@@ -527,3 +525,4 @@ function displayContinent(){
   document.querySelector(".continent-list").innerHTML = continentCards;
 
 }
+*/
