@@ -1,26 +1,15 @@
-
-// let getArr = [];
-// let weatherChoice;
-// var cityValues = [];
-// let continentOrder = 0;
-// let temperatureOrder = 0;
-
-
-(function() {
-  fetch("data.json")
+ fetch("data.json")
   .then((data) => data.json())
   .then((result) => {
-    // weather_data = result;
-    // initCity(); 
-    // displayCards('sunny');
-    // sortContinent();
-    // setInterval(sortContinent,60000);
     let obj=new Base(result);
-    obj.displayData();
     obj.setCity();
     obj.initCity();
+    setInterval(obj.callChange.bind(obj,1000));
+    obj.displayCards('sunny');
+    setInterval(obj.display.bind(obj,1000));
+    obj.sortContinent();
+    setInterval(obj.sortContinent.bind(obj,60000));
   });
-})();
 
 function Base(data){
   this.data=data;
@@ -38,15 +27,25 @@ function Base(data){
     "Nov",
     "Dec",
   ];
+  this.weatherChoice = "sunny";
+  this.getArr = [];
+  this.continentOrder = 0;
+  this.temperatureOrder = 0;
   document.querySelector("#change-values").addEventListener("input", this.callChange.bind(this));
+  document.querySelector("#sunny-button").addEventListener("click", this.displayCards.bind(this,'sunny'));
+  document.querySelector("#cold-button").addEventListener("click", this.displayCards.bind(this,'snowflake'));
+  document.querySelector("#rainy-button").addEventListener("click", this.displayCards.bind(this,'rainy'));
+  document.querySelector("#display-number").addEventListener("click", this.setMinMax.bind(this));
+  document.querySelector(".scroll-left").addEventListener("click", this.scrolLeft.bind(this));
+  document.querySelector(".scroll-right").addEventListener("click", this.scrollRight.bind(this));
+  document.querySelector(".c-name").addEventListener("click", this.continentButton.bind(this));
+  document.querySelector(".temp").addEventListener("click", this.tempButton.bind(this));
 }
-Base.prototype.displayData=function(){
-  console.log("display",this.data);
-}
+//Header section
 
+//Function to initialize city values in dropdown 
 Base.prototype.setCity = function(){
   this.city = Object.keys(this.data);
-  console.log("setCity",this.city);
   let option = ``;
   for (let i = 0; i < this.city.length; i++) {
     option += `<option>${this.city[i]}</option>`;
@@ -54,12 +53,13 @@ Base.prototype.setCity = function(){
   document.querySelector("#dropdown").innerHTML = option;
 }
 
+//Function to initially load page with city details
 Base.prototype.initCity = function(){
-  console.log(this.city[5]);
-  document.querySelector("#change-values").value = this.city[5];
+  document.querySelector("#change-values").value = this.city[6];
   this.change();
 }
 
+//Function to change the weather values displayed in header section based on city chosen by user
 Base.prototype.change = function(){
   const weatherImages = [
     document.getElementById(`weather-image1`),
@@ -177,12 +177,14 @@ Base.prototype.change = function(){
 
 }
 
+//Function to set weather values to null on getting invalid city input from user
 Base.prototype.setNullVal = function(){
   //Logo
   let logo = document.getElementById("logo");
   logo.src = `/images/Icons_for_cities/city.png`;
   //Box Border
   document.querySelector("#change-values").style.borderColor = "red";
+  console.log("Wrong input")
   //Temp C
   document.getElementById("celsius").innerHTML = "NULL";
   //Temp f
@@ -208,17 +210,17 @@ Base.prototype.setNullVal = function(){
   {
       document.getElementById(`weather-image${i}`).src=`/images/Weather_Icons/close.png`;
   }
-
 }
 
+//Function to check whether the input given by the user is valid or invalid and display results accordingly
 Base.prototype.callChange = function(){
   let cityGiven = document.querySelector("#change-values").value;
   let flag = 0;
   for(let i = 0; i < this.city.length; i++)
     {
       if(cityGiven == this.city[i]){
-        this.change();
         flag = 1;
+        this.change();
       }
     } 
     if (flag == 0){
@@ -226,180 +228,155 @@ Base.prototype.callChange = function(){
     }
 }
 
-
-
-/*
-
-
-setInterval(change, 1000);
-function setNullVal(){
-   
-};
 //Middle section
 
-//Middle section
-//Displaying time by the minute
-setInterval( function() { displayCards(weatherChoice); },60000);
-//Function to display the city cards based on user display choice and weather choice
-function display(slicedArr)
-{ 
-  let weatherCards = "";
-  for(let iterator=0; iterator<slicedArr.length; iterator++)
-  {
-    
-    var tzone = slicedArr[iterator].timeZone;
-    var time = new Date().toLocaleString("en-US", {
-    timeZone: tzone,
-    timeStyle: "short",
-    hourCycle: "h12",
-    });
-    dateTimeArr = slicedArr[iterator].dateAndTime.split(",");
-    let dateSplit = dateTimeArr[0];
-    let dateArr = dateSplit.split("/");
-    let dateInWords = String(dateArr[1].padStart(2, "0")) + "-" + monthArr[dateArr[0] - 1] + "-" + dateArr[2];
-
-    
-    weatherCards += `<div class="card${iterator}">
-    <div class="city-temp">
-        <p>${slicedArr[iterator].cityName}</p>
-        <div class="mid-temp">
-            <img class="sun" src="/images/Weather_Icons/${weatherChoice}Icon.svg">
-            <p>${slicedArr[iterator].temperature}</p>
-        </div>
-    </div>
-    <div class="changesize time">${time}</div>
-    <div class="changesize date">${dateInWords}</div>
-    <div class="dandt">
-        <p class="mid-humidity"><img src="/images/Weather_Icons/humidityIcon.svg">${slicedArr[iterator].humidity}</p>
-        <p class="mid-precip"><img src="/images/Weather_Icons/precipitationIcon.svg">${slicedArr[iterator].precipitation}</p>
-    </div>
-    </div>`
-
-  }
-  document.querySelector(".second-row").innerHTML = weatherCards;
-  for(let iterator=0; iterator<slicedArr.length; iterator++)
+//Function to get user choice and select the cities based on the weather specifications for the given user choice
+Base.prototype.displayCards = function(val){
+  this.weatherChoice = val;
+  this.getArr = [];
+  this.cityValues = Object.values(this.data);
+  if (this.weatherChoice == "sunny"){
+    document.getElementById("sunny-button").style.borderBottom = "2px solid #1E90FF";
+    document.getElementById("cold-button").style.borderBottom = "none";
+    document.getElementById("rainy-button").style.borderBottom = "none";
+    for(let i=0; i<this.cityValues.length; i++)
     {
-      document.querySelector(`.card${iterator}`).style.backgroundImage = `url(/images/Icons_for_cities/${slicedArr[iterator].cityName}.svg)`;
+      if( (parseInt(this.cityValues[i].temperature) > 29) 
+        && (parseInt(this.cityValues[i].humidity) < 50) 
+        && (parseInt(this.cityValues[i].precipitation) >= 50) ){
+          this.getArr.push(this.cityValues[i]);
+        }
     }
-    
-  
-}
-
-//Function to specify the city cards to be displayed
-function setMinMax()
-{
-  var filterLimit = document.getElementById("display-number").value;
-  let slicedArr = [];
-  if(getArr.length>filterLimit)
+  } else if (this.weatherChoice == "snowflake")
   {
-    slicedArr = getArr.slice(0,filterLimit);
-  }
-  else{ 
-    slicedArr = getArr;
-  }  
-  if(slicedArr.length < 4)
+    document.getElementById("sunny-button").style.borderBottom = "none";
+    document.getElementById("cold-button").style.borderBottom = "2px solid #1E90FF";
+    document.getElementById("rainy-button").style.borderBottom = "none";
+    for(let i=0; i<this.cityValues.length; i++)
     {
-      document.querySelector(".scroll-left").style.visibility = "hidden";
-      document.querySelector(".scroll-right").style.visibility = "hidden";
+      if( (parseInt(this.cityValues[i].temperature)>=20 && parseInt(this.cityValues[i].temperature) < 28) 
+      && (parseInt(this.cityValues[i].humidity) > 50) 
+      && (parseInt(this.cityValues[i].precipitation) < 50))
+      {
+        this.getArr.push(this.cityValues[i]);
+      }
     }
-    else{
-      document.querySelector(".scroll-left").style.visibility = "visible";
-      document.querySelector(".scroll-right").style.visibility = "visible";
+  } else if(this.weatherChoice == "rainy"){
+    document.getElementById("sunny-button").style.borderBottom = "none";
+    document.getElementById("cold-button").style.borderBottom = "none";
+    document.getElementById("rainy-button").style.borderBottom = "2px solid #1E90FF";
+    for(let i=0; i<this.cityValues.length; i++)
+    {
+      if( (parseInt(this.cityValues[i].temperature) < 20) 
+        && (parseInt(this.cityValues[i].humidity) >= 50) ){
+          this.getArr.push(this.cityValues[i])
+        }
     }
-  display(slicedArr);
+  }
+  this.sortCity();
 }
 
 //Function to sort the selected cities 
-function sortCity()
+Base.prototype.sortCity = function()
 {
-  if(weatherChoice==="sunny")
+  if(this.weatherChoice=="sunny")
   {
-    getArr.sort((a,b)=>{
+    this.getArr.sort((a,b)=>{
       return parseInt(b.temperature)-parseInt(a.temperature);
     })
   } 
-  else if(weatherChoice==="snowflake")
+  else if(this.weatherChoice=="snowflake")
   {
-    getArr.sort((a,b)=>{
+    this.getArr.sort((a,b)=>{
       return parseInt(b.precipitation)-parseInt(a.precipitation);
     })
   } 
   else
   {
-    getArr.sort((a,b)=>{
+    this.getArr.sort((a,b)=>{
       return parseInt(b.humidity)-parseInt(a.humidity);
     })
   } 
-  setMinMax();
+  this.setMinMax();
 }
 
-//Function to get user choice and select the cities based on the weather specifications for the given user choice
-function displayCards(val){
-  var cityValues = Object.values(weather_data);
-  weatherChoice = val;
-  getArr = [];
-
-  if (weatherChoice === "sunny"){
-    document.getElementById("sunny-button").style.borderBottom = "2px solid #1E90FF";
-    document.getElementById("cold-button").style.borderBottom = "none";
-    document.getElementById("rainy-button").style.borderBottom = "none";
-    for(let citySort=0; citySort<cityValues.length; citySort++)
-    {
-      if( (parseInt(cityValues[citySort].temperature) > 29) 
-        && (parseInt(cityValues[citySort].humidity) < 50) 
-        && (parseInt(cityValues[citySort].precipitation) >= 50) ){
-          getArr.push(cityValues[citySort]);
-        }
-    }
-  } else if (weatherChoice === "snowflake")
+//Function to specify the city cards to be displayed
+Base.prototype.setMinMax = function()
+{
+  let filterLimit = document.getElementById("display-number").value;
+  this.slicedArr = [];
+  if(this.getArr.length>filterLimit)
   {
-    document.getElementById("sunny-button").style.borderBottom = "none";
-    document.getElementById("cold-button").style.borderBottom = "2px solid #1E90FF";
-    document.getElementById("rainy-button").style.borderBottom = "none";
-    for(let citySort=0; citySort<cityValues.length; citySort++)
-    {
-      if( (parseInt(cityValues[citySort].temperature)>=20 && parseInt(cityValues[citySort].temperature) < 28) 
-      && (parseInt(cityValues[citySort].humidity) > 50) 
-      && (parseInt(cityValues[citySort].precipitation) < 50))
-      {
-        getArr.push(cityValues[citySort]);
-      }
-    }
-  } else if(weatherChoice === "rainy"){
-    document.getElementById("sunny-button").style.borderBottom = "none";
-    document.getElementById("cold-button").style.borderBottom = "none";
-    document.getElementById("rainy-button").style.borderBottom = "2px solid #1E90FF";
-    for(let citySort=0; citySort<cityValues.length; citySort++)
-    {
-      if( (parseInt(cityValues[citySort].temperature) < 20) 
-        && (parseInt(cityValues[citySort].humidity) >= 50) ){
-          getArr.push(cityValues[citySort])
-        }
-    }
+    this.slicedArr = this.getArr.slice(0,filterLimit);
   }
-  sortCity();
+  else{ 
+    this.slicedArr = this.getArr;
+  }  
+  this.display();
+}
 
+//Function to display the city cards based on user display choice and weather choice
+Base.prototype.display = function()
+{ 
+  let weatherCards = "";
+  for(let i=0; i<this.slicedArr.length; i++)
+  {
+    
+    let tzone = this.slicedArr[i].timeZone;
+    let time = new Date().toLocaleString("en-US", {
+    timeZone: tzone,
+    timeStyle: "short",
+    hourCycle: "h12",
+    });
+
+    dateTimeArr = this.slicedArr[i].dateAndTime.split(",");
+    let dateSplit = dateTimeArr[0];
+    let dateArr = dateSplit.split("/");
+    let dateInWords = String(dateArr[1].padStart(2, "0")) + "-" + this.monthArr[dateArr[0] - 1] + "-" + dateArr[2];
+    weatherCards += `<div class="card${i}">
+    <div class="city-temp">
+        <p>${this.slicedArr[i].cityName}</p>
+        <div class="mid-temp">
+            <img class="sun" src="/images/Weather_Icons/${this.weatherChoice}Icon.svg">
+            <p>${this.slicedArr[i].temperature}</p>
+        </div>
+    </div>
+    <div class="changesize time">${time}</div>
+    <div class="changesize date">${dateInWords}</div>
+    <div class="dandt">
+        <p class="mid-humidity"><img src="/images/Weather_Icons/humidityIcon.svg">${this.slicedArr[i].humidity}</p>
+        <p class="mid-precip"><img src="/images/Weather_Icons/precipitationIcon.svg">${this.slicedArr[i].precipitation}</p>
+    </div>
+    </div>`
+
+  }
+  document.querySelector(".second-row").innerHTML = weatherCards;
+  for(let i=0; i<this.slicedArr.length; i++)
+    {
+      document.querySelector(`.card${i}`).style.backgroundImage = `url(/images/Icons_for_cities/${this.slicedArr[i].cityName}.svg)`;
+    }
+  
 }
 
 //Function to scroll left while dislaying 4 or more cards
-function scrolLeft(){
+Base.prototype.scrolLeft = function(){
   document.querySelector(".with-arrow").scrollLeft -= 340;
 }
 
 //Function to scroll right while displaying 4 or more cards
-function scrollRight(){
+Base.prototype.scrollRight = function(){
   document.querySelector(".with-arrow").scrollLeft +=340;
 }
 
-//Task 3
+//Footer section
+
 //Function to sort continents by alphabetical order
-function sortContinent()
+Base.prototype.sortContinent = function()
 {
-  cityVal=Object.values(weather_data); 
-  if(continentOrder==0){ 
-    if(temperatureOrder==0)
+  if(this.continentOrder==0){ 
+    if(this.temperatureOrder==0)
     {    
-      cityVal.sort((a, b) => 
+      this.cityValues.sort((a, b) => 
       {       
         if (a.timeZone.split("/")[0] === b.timeZone.split("/")[0]) 
         {     
@@ -413,7 +390,7 @@ function sortContinent()
     }   
     else
     {    
-      cityVal.sort((a, b) => 
+      this.cityValues.sort((a, b) => 
       {        
         if (a.timeZone.split("/")[0] === b.timeZone.split("/")[0]) 
         {     
@@ -426,11 +403,11 @@ function sortContinent()
       });   
     }  
   }  
-  
+
   else
   {     
-    if (temperatureOrder == 0)
-    {    cityVal.sort((a, b) => 
+    if (this.temperatureOrder == 0)
+    {    this.cityValues.sort((a, b) => 
       {        
         if (a.timeZone.split("/")[0] === b.timeZone.split("/")[0]) 
         {      
@@ -444,7 +421,7 @@ function sortContinent()
     } 
     else 
     {    
-      cityVal.sort((a, b) => 
+      this.cityValues.sort((a, b) => 
       {         
         if (a.timeZone.split("/")[0] === b.timeZone.split("/")[0]) 
         {      
@@ -458,47 +435,46 @@ function sortContinent()
     }  
   }
 
-  displayContinent();
+  this.displayContinents();
 
 }
 
-//Event listeners to call sortContinent function on clicking continent and temperature arrows
-document.querySelector(".c-name").addEventListener("click", function()
-{  
-  if(continentOrder==0)
+//Function to call sortContinent function on clicking continent button
+Base.prototype.continentButton = function(){
+  if(this.continentOrder==0)
   {   
-    continentOrder=1;
+    this.continentOrder=1;
     document.querySelector(".cont-selector").src = "/images/General_Images_&_Icons/arrowDown.svg";  
   }  
-  else if(continentOrder==1)
+  else if(this.continentOrder==1)
   {   
-    continentOrder=0;   
+    this.continentOrder=0;   
     document.querySelector(".cont-selector").src = "/images/General_Images_&_Icons/arrowUp.svg";  
   }  
-  sortContinent(); 
-});
+  this.sortContinent(); 
+}
 
-document.querySelector(".temp").addEventListener("click", function()
-{  
-  if(temperatureOrder==0)
+//Function to call sortContinent function on clicking temperature button
+Base.prototype.tempButton = function(){
+  if(this.temperatureOrder==0)
   {   
-    temperatureOrder=1;
+    this.temperatureOrder=1;
     document.querySelector(".temp-selector").src = "/images/General_Images_&_Icons/arrowDown.svg";  
   }  
-  else if(temperatureOrder==1)
+  else if(this.temperatureOrder==1)
   {   
-    temperatureOrder=0;   
+    this.temperatureOrder=0;   
     document.querySelector(".temp-selector").src = "/images/General_Images_&_Icons/arrowUp.svg";  
   }  
-  sortContinent(); 
-});
+  this.sortContinent(); 
+}
 
-//Function to display the continents in user sepcified order
-function displayContinent(){
+//Function to display the continents in user specified order
+Base.prototype.displayContinents = function(){
   let continentCards = "";
   for (let i=0; i<12; i++){
-    var currentTime = new Date().toLocaleString("en-US", {
-      timeZone: cityVal[i].timeZone,
+    let currentTime = new Date().toLocaleString("en-US", {
+      timeZone: this.cityValues[i].timeZone,
       timeStyle: "medium",
       hourCycle: "h12",
     });
@@ -508,16 +484,15 @@ function displayContinent(){
     let time = ", "+hourMinSec[0]+":"+hourMinSec[1]+" "+amPm;
 
 
-    continentCards += `<div class="continent">
-    <div class="footer-continent">${cityVal[i].timeZone.split("/")[0]}</div>
-    <div class="footer-temp">${cityVal[i].temperature}</div>
+    continentCards += `<div class="continent${i}">
+    <div class="footer-continent">${this.cityValues[i].timeZone.split("/")[0]}</div>
+    <div class="footer-temp">${this.cityValues[i].temperature}</div>
     <div class="city-name">
-      <div>${cityVal[i].cityName}</div>
+      <div>${this.cityValues[i].cityName}</div>
       <div class="current-time">${time}</div>
     </div>
     <div class="humid-percent">
-    <img src="/images/Weather_Icons/humidityIcon.svg" alt="raindrop"> 
-    ${cityVal[i].humidity} 
+        <p> ${this.cityValues[i].humidity} <img src="/images/Weather_Icons/humidityIcon.svg" alt="raindrop"></p>
     </div>
 </div>`
   }
@@ -525,4 +500,3 @@ function displayContinent(){
   document.querySelector(".continent-list").innerHTML = continentCards;
 
 }
-*/
