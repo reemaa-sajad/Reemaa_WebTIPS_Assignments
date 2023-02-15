@@ -50,7 +50,7 @@ function changetoFarenheit(val) {
   let farenheit = val * 1.8 + 32;
   return farenheit;
 }
-
+setInterval(change,1000);
 function change() {
   const monthArr = [
     "Jan",
@@ -174,14 +174,14 @@ function change() {
       weatherImages[i].src = `/images/Weather_Icons/cloudyIcon.svg`;
     } else if (
       parseInt(weatherArray[i]) >= 18 &&
-      parseInt(weatherArray[i]) < 22
+      parseInt(weatherArray[i]) <= 22
     ) {
       weatherImages[i].src = `/images/Weather_Icons/windyIcon.svg`;
     } else if (parseInt(weatherArray[i]) <=0) {
         weatherImages[i].src = `/images/Weather_Icons/snowflakeIcon.svg`;
     } else if (parseInt(weatherArray[i]) < 18) {
       weatherImages[i].src = `/images/Weather_Icons/rainyIcon.svg`;
-    } else if (parseInt(weatherArray[i]) > 29) {
+    } else if (parseInt(weatherArray[i]) >= 29) {
       weatherImages[i].src = `/images/Weather_Icons/sunnyIcon.svg`;
     } 
   }
