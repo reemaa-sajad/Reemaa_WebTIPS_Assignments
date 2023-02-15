@@ -41,37 +41,13 @@ function setCity() {
   document.querySelector("#dropdown").innerHTML = option;
 }
 
-function initCity() {
-    city = Object.keys(weather_data); 
-    document.querySelector("#change-values").value = city[1];
-    change();
-};
-
-function callChange() {
-     var city = Object.keys(weather_data);
-     let cityGiven = document.querySelector("#change-values").value;
-     let flag = 0;
-     for(let i = 0; i < city.length; i++)
-     {
-         if(cityGiven == city[i]){
-            change();
-            flag = 1;
-        }
-    } 
-    if (flag == 0){
-         setNullVal(); 
-    }
+Base.prototype.initCity = function(){
+  console.log(this.city[5]);
+  document.querySelector("#change-values").value = this.city[5];
+  this.change();
 }
 
-//get temperature in farenheit
-let far;
-function changetoFarenheit(val) {
-  let farenheit = val * 1.8 + 32;
-  return farenheit;
-}
-
-function change() {
-
+Base.prototype.change = function(){
   const weatherImages = [
     document.getElementById(`weather-image1`),
     document.getElementById(`weather-image2`),
@@ -82,12 +58,10 @@ function change() {
   ];
 
   const weatherArray = [];
-
-  var city = Object.keys(weather_data);
-  var current_city = document.querySelector("#change-values").value;
+  let current_city = document.querySelector("#change-values").value;
+  let logo = document.getElementById("logo");
 
   //change the logo image
-  var logo = document.getElementById("logo");
   logo.src = `/images/Icons_for_cities/${current_city}.svg`;
 
   //Box Border
@@ -95,29 +69,29 @@ function change() {
 
   //temperature C
   document.getElementById("celsius").innerHTML =
-    weather_data[current_city].temperature;
+    this.data[current_city].temperature;
 
   //temperature F
-  let cel = weather_data[current_city].temperature.slice(0, -2);
-  far = changetoFarenheit(cel);
+  let cel = this.data[current_city].temperature.slice(0, -2);
+  let far = cel * 1.8 + 32;
   far = far.toPrecision(3);
   far += " F";
   document.getElementById("faren").innerHTML = far;
 
   // humidity level
   document.getElementById("humid-num").innerHTML =
-    weather_data[current_city].humidity;
+    this.data[current_city].humidity;
 
   //precipitation
   document.getElementById("precip-level").innerHTML =
-    weather_data[current_city].precipitation;
+    this.data[current_city].precipitation;
 
   //date and time
-  dateTimeArr = weather_data[current_city].dateAndTime.split(",");
-  //var time = dateTimeArr[1].slice(0, -2);
+  let dateTimeArr = this.data[current_city].dateAndTime.split(",");
+  
   //Real time
-  var tzone = weather_data[current_city].timeZone;
-  var time = new Date().toLocaleString("en-US", {
+  let tzone = this.data[current_city].timeZone;
+  let time = new Date().toLocaleString("en-US", {
     timeZone: tzone,
     timeStyle: "medium",
     hourCycle: "h12",
@@ -130,7 +104,7 @@ function change() {
   let dateInWords =
     String(dateArr[1].padStart(2, "0")) +
     "-" +
-    monthArr[dateArr[0] - 1] +
+    this.monthArr[dateArr[0] - 1] +
     "-" +
     dateArr[2];
   document.getElementById("header-date").innerHTML = dateInWords;
@@ -140,7 +114,7 @@ function change() {
   let amPm = time.slice(-2);
   time = time.slice(0, 2);
   time = parseInt(time)+1;
-  for (var i = 1; i < 6; i++) {
+  for (let i = 1; i < 6; i++) {
     if (time > 12) {
       time = time - 12;
     }
@@ -158,69 +132,96 @@ function change() {
   }
 
   //getting temperature values on the right side of header
-  document.getElementById(`temp1`).innerHTML = weather_data[
+  document.getElementById(`temp1`).innerHTML = this.data[
     current_city
   ].temperature.slice(0, 2);
-  weatherArray[0] = weather_data[current_city].temperature.slice(0, 2);
-  weatherArray[5] = weather_data[current_city].temperature.slice(0, 2);
-  for (var i = 2; i < 6; i++) {
-    document.getElementById(`temp${i}`).innerHTML = weather_data[current_city].nextFiveHrs[i - 2].slice(0, 2);
-    weatherArray[i - 1] = weather_data[current_city].nextFiveHrs[i - 2].slice(0, 2);
+  weatherArray[0] = this.data[current_city].temperature.slice(0, 2);
+  weatherArray[5] = this.data[current_city].temperature.slice(0, 2);
+  for (let i = 2; i < 6; i++) {
+    document.getElementById(`temp${i}`).innerHTML = this.data[current_city].nextFiveHrs[i - 2].slice(0, 2);
+    weatherArray[i - 1] = this.data[current_city].nextFiveHrs[i - 2].slice(0, 2);
   }
-  document.getElementById(`temp6`).innerHTML = weather_data[
+  document.getElementById(`temp6`).innerHTML = this.data[
     current_city
   ].temperature.slice(0, 2);
 
   //getting the image icon for weather
-  for (var i = 0; i <= 5; i++) {
+  for (let i = 0; i <= 5; i++) {
     if (parseInt(weatherArray[i]) >= 23 && parseInt(weatherArray[i]) < 29) {
       weatherImages[i].src = `/images/Weather_Icons/cloudyIcon.svg`;
     } else if (
       parseInt(weatherArray[i]) >= 18 &&
-      parseInt(weatherArray[i]) < 22
+      parseInt(weatherArray[i]) <= 22
     ) {
       weatherImages[i].src = `/images/Weather_Icons/windyIcon.svg`;
     } else if (parseInt(weatherArray[i]) <=0) {
         weatherImages[i].src = `/images/Weather_Icons/snowflakeIcon.svg`;
     } else if (parseInt(weatherArray[i]) < 18) {
       weatherImages[i].src = `/images/Weather_Icons/rainyIcon.svg`;
-    } else if (parseInt(weatherArray[i]) > 29) {
+    } else if (parseInt(weatherArray[i]) >= 29) {
       weatherImages[i].src = `/images/Weather_Icons/sunnyIcon.svg`;
     } 
   }
-};
+
+}
+
+Base.prototype.setNullVal = function(){
+  //Logo
+  let logo = document.getElementById("logo");
+  logo.src = `/images/Icons_for_cities/city.png`;
+  //Box Border
+  document.querySelector("#change-values").style.borderColor = "red";
+  //Temp C
+  document.getElementById("celsius").innerHTML = "NULL";
+  //Temp f
+  document.getElementById("faren").innerHTML = "NULL";
+  //Humidity level
+  document.getElementById("humid-num").innerHTML = "NULL";
+  //Precipitation
+  document.getElementById("precip-level").innerHTML = "NULL";
+  //Date and Time
+  document.getElementById("header-time").innerHTML = "Invalid city name!";
+  document.getElementById("header-date").innerHTML = "";
+  //Hourly Time
+  for(let i=0; i<6; i++)
+  {
+    document.getElementById(`current-time${i}`).innerHTML = "-";
+  }
+  //Hourly Temperature
+  for(let i=1; i<=6; i++){
+      document.getElementById(`temp${i}`).innerHTML = "NA";
+  }
+  //Weather icon for hourly temperature
+  for(let i=1; i<=6; i++)
+  {
+      document.getElementById(`weather-image${i}`).src=`/images/Weather_Icons/close.png`;
+  }
+
+}
+
+Base.prototype.callChange = function(){
+  let cityGiven = document.querySelector("#change-values").value;
+  let flag = 0;
+  for(let i = 0; i < this.city.length; i++)
+    {
+      if(cityGiven == this.city[i]){
+        this.change();
+        flag = 1;
+      }
+    } 
+    if (flag == 0){
+      this.setNullVal(); 
+    }
+}
+
+
+
+/*
+
+
 setInterval(change, 1000);
 function setNullVal(){
-    //Box Border
-    document.querySelector("#change-values").style.borderColor = "red";
-    //Logo
-    var logo = document.getElementById("logo");
-    logo.src = `/images/Icons_for_cities/city.png`;
-    //Temp C
-    document.getElementById("celsius").innerHTML = "NULL";
-    //Temp f
-    document.getElementById("faren").innerHTML = "NULL";
-    //Humidity level
-    document.getElementById("humid-num").innerHTML = "NULL";
-    //Precipitation
-    document.getElementById("precip-level").innerHTML = "NULL";
-    //Date and Time
-    document.getElementById("header-time").innerHTML = "Invalid city name!";
-    document.getElementById("header-date").innerHTML = "";
-     //Hourly Time
-     for(let i=0; i<6; i++)
-     {
-         document.getElementById(`current-time${i}`).innerHTML = "-";
-     }
-    //Hourly Temperature
-    for(let i=1; i<=6; i++){
-        document.getElementById(`temp${i}`).innerHTML = "NA";
-    }
-    //Weather icon for hourly temperature
-    for(let i=1; i<=6; i++)
-    {
-        document.getElementById(`weather-image${i}`).src=`/images/Weather_Icons/close.png`;
-    }
+   
 };
 
 
@@ -509,3 +510,4 @@ function displayContinent(){
   document.querySelector(".continent-list").innerHTML = continentCards;
 
 }
+*/
