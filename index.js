@@ -1,94 +1,65 @@
-var weather_data;
-let getArr = [];
-let weatherChoice;
-var cityValues = [];
-let continentOrder = 0;
-let temperatureOrder = 0;
-const monthArr = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "June",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
+
+// let getArr = [];
+// let weatherChoice;
+// var cityValues = [];
+// let continentOrder = 0;
+// let temperatureOrder = 0;
+
 
 (function() {
   fetch("data.json")
   .then((data) => data.json())
   .then((result) => {
-    weather_data = result;
-    setCity();
-    initCity(); 
-    displayCards('sunny');
-    sortContinent();
-    setInterval(sortContinent,60000);
+    // weather_data = result;
+    // initCity(); 
+    // displayCards('sunny');
+    // sortContinent();
+    // setInterval(sortContinent,60000);
     let obj=new Base(result);
     obj.displayData();
     obj.setCity();
+    obj.initCity();
   });
 })();
 
 function Base(data){
   this.data=data;
-  this.city=Object.keys(data);
+  this.monthArr = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "June",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  document.querySelector("#change-values").addEventListener("input", this.callChange.bind(this));
 }
 Base.prototype.displayData=function(){
   console.log("display",this.data);
 }
 
 Base.prototype.setCity = function(){
+  this.city = Object.keys(this.data);
   console.log("setCity",this.city);
-
-}
-
-function setCity() {
-  var city = Object.keys(weather_data);
-  var option = ``;
-  for (var i = 0; i < city.length; i++) {
-    option += `<option>${city[i]}</option>`;
+  let option = ``;
+  for (let i = 0; i < this.city.length; i++) {
+    option += `<option>${this.city[i]}</option>`;
   }
   document.querySelector("#dropdown").innerHTML = option;
 }
 
-function initCity() {
-    city = Object.keys(weather_data); 
-    document.querySelector("#change-values").value = city[1];
-    change();
-};
-
-function callChange() {
-     var city = Object.keys(weather_data);
-     let cityGiven = document.querySelector("#change-values").value;
-     let flag = 0;
-     for(let i = 0; i < city.length; i++)
-     {
-         if(cityGiven == city[i]){
-            change();
-            flag = 1;
-        }
-    } 
-    if (flag == 0){
-         setNullVal(); 
-    }
+Base.prototype.initCity = function(){
+  console.log(this.city[5]);
+  document.querySelector("#change-values").value = this.city[5];
+  this.change();
 }
 
-//get temperature in farenheit
-let far;
-function changetoFarenheit(val) {
-  let farenheit = val * 1.8 + 32;
-  return farenheit;
-}
-
-function change() {
-
-//Function to change the weather values displayed in header section based on city chosen by user
 Base.prototype.change = function(){
   const weatherImages = [
     document.getElementById(`weather-image1`),
@@ -203,39 +174,66 @@ Base.prototype.change = function(){
       weatherImages[i].src = `/images/Weather_Icons/sunnyIcon.svg`;
     } 
   }
-};
+
+}
+
+Base.prototype.setNullVal = function(){
+  //Logo
+  let logo = document.getElementById("logo");
+  logo.src = `/images/Icons_for_cities/city.png`;
+  //Box Border
+  document.querySelector("#change-values").style.borderColor = "red";
+  //Temp C
+  document.getElementById("celsius").innerHTML = "NULL";
+  //Temp f
+  document.getElementById("faren").innerHTML = "NULL";
+  //Humidity level
+  document.getElementById("humid-num").innerHTML = "NULL";
+  //Precipitation
+  document.getElementById("precip-level").innerHTML = "NULL";
+  //Date and Time
+  document.getElementById("header-time").innerHTML = "Invalid city name!";
+  document.getElementById("header-date").innerHTML = "";
+  //Hourly Time
+  for(let i=0; i<6; i++)
+  {
+    document.getElementById(`current-time${i}`).innerHTML = "-";
+  }
+  //Hourly Temperature
+  for(let i=1; i<=6; i++){
+      document.getElementById(`temp${i}`).innerHTML = "NA";
+  }
+  //Weather icon for hourly temperature
+  for(let i=1; i<=6; i++)
+  {
+      document.getElementById(`weather-image${i}`).src=`/images/Weather_Icons/close.png`;
+  }
+
+}
+
+Base.prototype.callChange = function(){
+  let cityGiven = document.querySelector("#change-values").value;
+  let flag = 0;
+  for(let i = 0; i < this.city.length; i++)
+    {
+      if(cityGiven == this.city[i]){
+        this.change();
+        flag = 1;
+      }
+    } 
+    if (flag == 0){
+      this.setNullVal(); 
+    }
+}
+
+
+
+/*
+
+
 setInterval(change, 1000);
 function setNullVal(){
-    //Box Border
-    document.querySelector("#change-values").style.borderColor = "red";
-    //Logo
-    var logo = document.getElementById("logo");
-    logo.src = `/images/Icons_for_cities/city.png`;
-    //Temp C
-    document.getElementById("celsius").innerHTML = "NULL";
-    //Temp f
-    document.getElementById("faren").innerHTML = "NULL";
-    //Humidity level
-    document.getElementById("humid-num").innerHTML = "NULL";
-    //Precipitation
-    document.getElementById("precip-level").innerHTML = "NULL";
-    //Date and Time
-    document.getElementById("header-time").innerHTML = "Invalid city name!";
-    document.getElementById("header-date").innerHTML = "";
-     //Hourly Time
-     for(let i=0; i<6; i++)
-     {
-         document.getElementById(`current-time${i}`).innerHTML = "-";
-     }
-    //Hourly Temperature
-    for(let i=1; i<=6; i++){
-        document.getElementById(`temp${i}`).innerHTML = "NA";
-    }
-    //Weather icon for hourly temperature
-    for(let i=1; i<=6; i++)
-    {
-        document.getElementById(`weather-image${i}`).src=`/images/Weather_Icons/close.png`;
-    }
+   
 };
 
 //Function to specify the city cards to be displayed
@@ -557,5 +555,4 @@ function displayContinent(){
   document.querySelector(".continent-list").innerHTML = continentCards;
 
 }
-
-}
+*/
