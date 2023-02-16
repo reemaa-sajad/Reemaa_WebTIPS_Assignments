@@ -59,7 +59,7 @@ Base.prototype.change = function(){
   ];
 
     const weatherArray = [];
-    let current_city = document.querySelector("#change-values").value;
+    let current_city = document.querySelector("#change-values").value.toLowerCase();
     let logo = document.getElementById("logo");
 
     //change the logo image
@@ -191,7 +191,7 @@ Base.prototype.change = function(){
   }
   //Function to check whether the input given by the user is valid or invalid and display results accordingly
   callChange() {
-    let cityGiven = document.querySelector("#change-values").value;
+    let cityGiven = document.querySelector("#change-values").value.toLowerCase();
     let flag = 0;
     for (let i = 0; i < this.city.length; i++) {
       if (cityGiven == this.city[i]) {
@@ -292,7 +292,7 @@ Base.prototype.change = function(){
       let tzone = this.slicedArr[i].timeZone;
       let time = new Date().toLocaleString("en-US", {
         timeZone: tzone,
-        timeStyle: "medium",
+        timeStyle: "short",
         hourCycle: "h12",
       });
 
