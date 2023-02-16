@@ -59,17 +59,13 @@ class Base {
   }
   //Function to change the weather values displayed in header section based on city chosen by user
   change() {
-    const weatherImages = [
-      document.getElementById(`weather-image1`),
-      document.getElementById(`weather-image2`),
-      document.getElementById(`weather-image3`),
-      document.getElementById(`weather-image4`),
-      document.getElementById(`weather-image5`),
-      document.getElementById(`weather-image6`),
-    ];
+    const weatherImages = [];
+    for(let i=0; i<6; i++){
+      weatherImages[i] = document.getElementById(`weather-image${i+1}`);
+    }
 
     const weatherArray = [];
-    let current_city = document.querySelector("#change-values").value;
+    let current_city = document.querySelector("#change-values").value.toLowerCase();
     let logo = document.getElementById("logo");
 
     //change the logo image
@@ -201,7 +197,7 @@ class Base {
   }
   //Function to check whether the input given by the user is valid or invalid and display results accordingly
   callChange() {
-    let cityGiven = document.querySelector("#change-values").value;
+    let cityGiven = document.querySelector("#change-values").value.toLowerCase();
     let flag = 0;
     for (let i = 0; i < this.city.length; i++) {
       if (cityGiven == this.city[i]) {
@@ -303,7 +299,7 @@ class Base {
       let tzone = this.slicedArr[i].timeZone;
       let time = new Date().toLocaleString("en-US", {
         timeZone: tzone,
-        timeStyle: "medium",
+        timeStyle: "short",
         hourCycle: "h12",
       });
 

@@ -23,7 +23,6 @@
   .cursor-sun, .cursor-snow, .cursor-rain {
     cursor: pointer;
     padding-bottom: 10px;
-    padding-bottom: 10px;
   }
   
   .displaytop {
@@ -113,9 +112,44 @@
   .card9:hover{
     transform: scale(1.2);
   }
-  .card10:hover {
-    transform: scale(1,2);
+
+  .card0:hover{
+    transform: scale(1.2);
   }
+  .card1:hover{
+    transform: scale(1.2);
+  }
+  .card2:hover{
+    transform: scale(1.2);
+  }
+  .card3:hover{
+    transform: scale(1.2);
+  }
+  .card4:hover{
+    transform: scale(1.2);
+  }
+  .card5:hover{
+    transform: scale(1.2);
+  }
+  .card6:hover{
+    transform: scale(1.2);
+  }
+  .card6:hover{
+    transform: scale(1.2);
+  }
+  .card7:hover{
+    transform: scale(1.2);
+  }
+  .card8:hover{
+    transform: scale(1.2);
+  }
+  .card9:hover{
+    transform: scale(1.2);
+  }
+  .card10:hover {
+    transform: scale(1.2);
+  }
+  
   
   .dandt {
     font-size: 20px;
