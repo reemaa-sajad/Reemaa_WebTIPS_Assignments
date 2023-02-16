@@ -48,7 +48,7 @@ function initCity() {
 //Function to check whether the input given by the user is valid or invalid and display results accordingly
 function callChange() {
      var city = Object.keys(weather_data);
-     let cityGiven = document.querySelector("#change-values").value;
+     let cityGiven = document.querySelector("#change-values").value.toLowerCase();
      let flag = 0;
      for(let userInput = 0; userInput < city.length; userInput++)
      {

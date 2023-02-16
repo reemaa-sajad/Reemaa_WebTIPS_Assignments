@@ -56,6 +56,7 @@
     justify-content: flex-start;
     overflow-x: scroll;
     position: relative;
+
   }
   
   .with-arrow::-webkit-scrollbar {
@@ -63,8 +64,8 @@
 
   .card0, .card1, .card2, .card3, .card4, .card5, .card6, .card7, .card8, .card9, .card10 {
     padding: 20px;
-    min-width: 300px;
-    min-height: 300px;
+    min-width: 280px;
+    min-height: 280px;
     margin-bottom: 2rem;
     background-color: #181818;
     background-image: url(/images/kolkata.svg);
@@ -75,11 +76,44 @@
     color: #ffffff;
     font-size: 20px;
     border-radius: 10px;
-    transition: transform 0.2s;
+    transition: all 0.2s ease-in-out;
   }
   
-  .card:hover {
+  .card0:hover{
     transform: scale(1.2);
+  }
+  .card1:hover{
+    transform: scale(1.2);
+  }
+  .card2:hover{
+    transform: scale(1.2);
+  }
+  .card3:hover{
+    transform: scale(1.2);
+  }
+  .card4:hover{
+    transform: scale(1.2);
+  }
+  .card5:hover{
+    transform: scale(1.2);
+  }
+  .card6:hover{
+    transform: scale(1.2);
+  }
+  .card6:hover{
+    transform: scale(1.2);
+  }
+  .card7:hover{
+    transform: scale(1.2);
+  }
+  .card8:hover{
+    transform: scale(1.2);
+  }
+  .card9:hover{
+    transform: scale(1.2);
+  }
+  .card10:hover {
+    transform: scale(1,2);
   }
   
   .dandt {
