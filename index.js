@@ -26,6 +26,7 @@ const monthArr = [
     initCity(); 
     displayCards('sunny');
   });
+})();
 //Header section
 
 //Function to initialize city values in dropdown 
@@ -188,6 +189,8 @@ function change() {
   }
 };
 setInterval(callChange,1000);
+
+//Function to set weather values to null on getting invalid city input from user
 function setNullVal(){
     //Box Border
     document.querySelector("#change-values").style.borderColor = "red";
@@ -221,7 +224,10 @@ function setNullVal(){
     }
 };
 
-
+//Middle section
+//Displaying time by the minute
+setInterval( function() { displayCards(weatherChoice); },60000);
+//Function to display the city cards based on user display choice and weather choice
 function display(slicedArr)
 { 
   let weatherCards = "";
@@ -231,7 +237,7 @@ function display(slicedArr)
     var tzone = slicedArr[i].timeZone;
     var time = new Date().toLocaleString("en-US", {
     timeZone: tzone,
-    timeStyle: "medium",
+    timeStyle: "short",
     hourCycle: "h12",
     });
 
@@ -265,8 +271,7 @@ function display(slicedArr)
   
 }
 
-
-
+//Function to specify the city cards to be displayed
 function setMinMax()
 {
   var filterLimit = document.getElementById("display-number").value;
@@ -290,7 +295,7 @@ function setMinMax()
   display(slicedArr);
 }
 
-
+//Function to sort the selected cities 
 function sortCity()
 {
   if(weatherChoice=="sunny")
@@ -314,6 +319,7 @@ function sortCity()
   setMinMax();
 }
 
+//Function to get user choice and select the cities based on the weather specifications for the given user choice
 function displayCards(val){
   weatherChoice = val;
   getArr = [];
@@ -361,11 +367,13 @@ function displayCards(val){
 
 }
 
+//Function to scroll left while dislaying 4 or more cards
 function scrolLeft(){
   console.log("Inside scroll left");
   document.querySelector(".with-arrow").scrollLeft -= 340;
 }
 
+//Function to scroll right while displaying 4 or more cards
 function scrollRight(){
   document.querySelector(".with-arrow").scrollLeft +=340;
 }
