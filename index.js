@@ -219,6 +219,7 @@ class Base {
     this.weatherChoice = val;
     this.getArr = [];
     this.cityValues = Object.values(this.data);
+    console.log("inside displayCards");
     if (this.weatherChoice == "sunny") {
       document.getElementById("sunny-button").style.borderBottom = "2px solid #1E90FF";
       document.getElementById("cold-button").style.borderBottom = "none";
@@ -306,7 +307,7 @@ class Base {
         hourCycle: "h12",
       });
 
-      dateTimeArr = this.slicedArr[i].dateAndTime.split(",");
+      let dateTimeArr = this.slicedArr[i].dateAndTime.split(",");
       let dateSplit = dateTimeArr[0];
       let dateArr = dateSplit.split("/");
       let dateInWords = String(dateArr[1].padStart(2, "0")) + "-" + this.monthArr[dateArr[0] - 1] + "-" + dateArr[2];
