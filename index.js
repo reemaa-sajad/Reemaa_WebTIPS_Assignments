@@ -32,10 +32,10 @@ const monthArr = [
   });
 })();
 //Header section
+//Function to initialize city values in dropdown 
 
 
 //Function to initialize city values in dropdown 
-
 function setCity() {
   var city = Object.keys(weather_data);
   var option = ``;
@@ -225,6 +225,7 @@ function setNullVal(){
         document.getElementById(`weather-image${hourlyWeather}`).src=`/images/Weather_Icons/close.png`;
     }
 };
+//Middle section
 
 //Middle section
 //Displaying time by the minute
@@ -497,7 +498,7 @@ function displayContinent(){
     let time = ", "+hourMinSec[0]+":"+hourMinSec[1]+" "+amPm;
 
 
-    continentCards += `<div class="continent${i}">
+    continentCards += `<div class="continent">
     <div class="footer-continent">${cityVal[i].timeZone.split("/")[0]}</div>
     <div class="footer-temp">${cityVal[i].temperature}</div>
     <div class="city-name">

@@ -54,6 +54,17 @@
     padding: 10px;
     transition: 0.2s;
   }
+
+  .continent{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+    background-color: #2e2e2e;
+    font-size: 25px;
+    justify-content: center;
+    padding: 10px;
+    transition: 0.2s;
+  }
   
   .continent:hover {
     transform: scale(1.1);
