@@ -592,56 +592,49 @@ Base.prototype.sortContinent = function()
     }  
   }
 
-  this.displayContinents();
+    this.displayContinents();
 
-}
-
-//Function to call sortContinent function on clicking continent button
-Base.prototype.continentButton = function(){
-  if(this.continentOrder==0)
-  {   
-    this.continentOrder=1;
-    document.querySelector(".cont-selector").src = "/images/General_Images_&_Icons/arrowDown.svg";  
-  }  
-  else if(this.continentOrder==1)
-  {   
-    this.continentOrder=0;   
-    document.querySelector(".cont-selector").src = "/images/General_Images_&_Icons/arrowUp.svg";  
-  }  
-  this.sortContinent(); 
-}
-
-//Function to call sortContinent function on clicking temperature button
-Base.prototype.tempButton = function(){
-  if(this.temperatureOrder==0)
-  {   
-    this.temperatureOrder=1;
-    document.querySelector(".temp-selector").src = "/images/General_Images_&_Icons/arrowDown.svg";  
-  }  
-  else if(this.temperatureOrder==1)
-  {   
-    this.temperatureOrder=0;   
-    document.querySelector(".temp-selector").src = "/images/General_Images_&_Icons/arrowUp.svg";  
-  }  
-  this.sortContinent(); 
-}
-
-//Function to display the continents in user specified order
-Base.prototype.displayContinents = function(){
-  let continentCards = "";
-  for (let i=0; i<12; i++){
-    let currentTime = new Date().toLocaleString("en-US", {
-      timeZone: this.cityValues[i].timeZone,
-      timeStyle: "medium",
-      hourCycle: "h12",
-    });
-    let timeArray = currentTime.split(" ");
-    let amPm = timeArray[1]
-    let hourMinSec = timeArray[0].split(":");
-    let time = ", "+hourMinSec[0]+":"+hourMinSec[1]+" "+amPm;
+  }
+  //Function to call sortContinent function on clicking continent button
+  continentButton() {
+    if (this.continentOrder == 0) {
+      this.continentOrder = 1;
+      document.querySelector(".cont-selector").src = "/images/General_Images_&_Icons/arrowDown.svg";
+    }
+    else if (this.continentOrder == 1) {
+      this.continentOrder = 0;
+      document.querySelector(".cont-selector").src = "/images/General_Images_&_Icons/arrowUp.svg";
+    }
+    this.sortContinent();
+  }
+  //Function to call sortContinent function on clicking temperature button
+  tempButton() {
+    if (this.temperatureOrder == 0) {
+      this.temperatureOrder = 1;
+      document.querySelector(".temp-selector").src = "/images/General_Images_&_Icons/arrowDown.svg";
+    }
+    else if (this.temperatureOrder == 1) {
+      this.temperatureOrder = 0;
+      document.querySelector(".temp-selector").src = "/images/General_Images_&_Icons/arrowUp.svg";
+    }
+    this.sortContinent();
+  }
+  //Function to display the continents in user specified order
+  displayContinents() {
+    let continentCards = "";
+    for (let i = 0; i < 12; i++) {
+      let currentTime = new Date().toLocaleString("en-US", {
+        timeZone: this.cityValues[i].timeZone,
+        timeStyle: "medium",
+        hourCycle: "h12",
+      });
+      let timeArray = currentTime.split(" ");
+      let amPm = timeArray[1];
+      let hourMinSec = timeArray[0].split(":");
+      let time = ", " + hourMinSec[0] + ":" + hourMinSec[1] + " " + amPm;
 
 
-    continentCards += `<div class="continent${i}">
+      continentCards += `<div class="continent${i}">
     <div class="footer-continent">${this.cityValues[i].timeZone.split("/")[0]}</div>
     <div class="footer-temp">${this.cityValues[i].temperature}</div>
     <div class="city-name">
@@ -651,9 +644,24 @@ Base.prototype.displayContinents = function(){
     <div class="humid-percent">
         <p> ${this.cityValues[i].humidity} <img src="/images/Weather_Icons/humidityIcon.svg" alt="raindrop"></p>
     </div>
-</div>`
+</div>`;
+    }
+
+    document.querySelector(".continent-list").innerHTML = continentCards;
+
   }
-
-  document.querySelector(".continent-list").innerHTML = continentCards;
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
