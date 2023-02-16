@@ -23,15 +23,6 @@
   .cursor-sun, .cursor-snow, .cursor-rain {
     cursor: pointer;
     padding-bottom: 10px;
-    padding-bottom: 10px;
-  }
-
-  .active{
-    margin-bottom: 2px solid #1E90FF;
-  }
-
-  .active{
-    margin-bottom: 2px solid #1E90FF;
   }
   
   .displaytop {
