@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,27 +13,24 @@
     <link rel="icon" type="image/x-icon" href="/images/icon.png">
 </head>
 <!-- Header Section -->
+
 <body>
     <div class="header-section">
         <div class="item1">
-            <img class="logo" src="/images/Icons_for_cities/kolkata.svg">
+            <img class="logo" id="logo" src="/images/Icons_for_cities/kolkata.svg">
         </div>
         <div class="item2">
             <div>
-                <select class="dropdown" id="location" name="location">
-                    <option value="delhi" selected>New Delhi</option>
-                    <option value="mumbai">Mumbai</option>
-                    <option value="coimbatore">Coimbatore</option>
-                    <option value="chennai">Chennai</option>
-                </select>
+                <input id="change-values" oninput="callChange()" class="dropdown" list="dropdown" >
+                <datalist id="dropdown">
+                </datalist>
             </div>
             <div class="date-time">
-                <p class="header-time">10:10
+                <p class="header-time" id="header-time">10:10
                     <span class="sub">:44</span>
-                    <img class="am-state" src="/images/General_Images_&_Icons/amState.svg" alt="sun image">
                 </p>
             </div>
-            <div class="header-date">
+            <div class="header-date" id="header-date">
                 <p>01-Mar-2020</p>
             </div>
 
@@ -40,32 +38,32 @@
         <div class="item3">
             <div class="temp-celsius">
                 <p class="temp-c">Temp °C</p>
-                <p class="celsius">25 C</p>
+                <p class="celsius" id="celsius">25 C</p>
             </div>
             <div class="temp-faren">
                 <p class="temp-f">Temp F</p>
-                <p class="faren">78 F</p>
+                <p class="faren" id="faren">78 F</p>
             </div>
         </div>
         <div class="item4">
             <div>
                 <p class="humid">Humidity</p>
-                <p class="humid-num">26%</p>
+                <p class="humid-num" id="humid-num">26%</p>
             </div>
 
             <div class="header-precip">
                 <p class="prec">Precipitation</p>
-                <p class="precip-level">0%</p>
+                <p class="precip-level" id="precip-level">0%</p>
             </div>
         </div>
         <div class="item5">
             <div class="clock">
-                <div>NOW</div>
-                <div>11 AM</div>
-                <div>12 PM</div>
-                <div>01 PM</div>
-                <div>02 PM</div>
-                <div>03 PM</div>
+                <div id="current-time0">NOW</div>
+                <div id="current-time1">11 AM</div>
+                <div id="current-time2">12 PM</div>
+                <div id="current-time3">01 PM</div>
+                <div id="current-time4">02 PM</div>
+                <div id="current-time5">03 PM</div>
             </div>
             <div class="lines">
                 <div>|</div>
@@ -81,25 +79,25 @@
                 <div>|</div>
             </div>
             <div class="clouds">
-                <div><img src="/images/Weather_Icons/snowflakeIcon.svg"></div>
-                <div><img src="/images/Weather_Icons/rainyIcon.svg"></div>
-                <div><img src="/images/Weather_Icons/windyIcon.svg"></div>
-                <div><img src="/images/Weather_Icons/cloudyIcon.svg"></div>
-                <div><img src="/images/Weather_Icons/rainyIcon.svg"></div>
-                <div><img src="/images/Weather_Icons/windyIcon.svg"></div>
+                <div ><img id="weather-image1" src="/images/Weather_Icons/snowflakeIcon.svg"></div>
+                <div ><img id="weather-image2" src="/images/Weather_Icons/cloudyIcon.svg"></div>
+                <div ><img id="weather-image3" src="/images/Weather_Icons/rainyIcon.svg"></div>
+                <div ><img id="weather-image4" src="/images/Weather_Icons/windyIcon.svg"></div>
+                <div ><img id="weather-image5" src="/images/Weather_Icons/sunnyIcon.svg"></div>
+                <div ><img id="weather-image6" src="/images/Weather_Icons/windyIcon.svg"></div>
             </div>
             <div class="degree">
-                <div>6</div>
-                <div>7</div>
-                <div>7</div>
-                <div>8</div>
-                <div>8</div>
-                <div>6</div>
+                <div id="temp1">6</div>
+                <div id="temp2">7</div>
+                <div id="temp3">7</div>
+                <div id="temp4">8</div>
+                <div id="temp5">8</div>
+                <div id="temp6">6</div>
             </div>
         </div>
     </div>
 
-<!-- Body Section -->
+    <!-- Body Section -->
     <div class="body-section">
         <div class="first-row">
             <div class="top-title">Top cities around the world</div>
@@ -177,7 +175,7 @@
                     <p class="mid-humidity"><img src="/images/Weather_Icons/humidityIcon.svg"> 53 %</p>
                     <p class="mid-precip"><img src="/images/Weather_Icons/precipitationIcon.svg"> 10 %</p>
                 </div>
-            </div>  
+            </div>
 
             <div class="card">
                 <div class="city-temp">
@@ -204,7 +202,7 @@
             <div class="c-name">Continent Name &#8595</div>
             <div class="temp">Temperature &#8593;</div>
         </div>
-         <div class="continent-list">
+        <div class="continent-list">
             <div class="continent">
                 <div class="footer-continent">Asia</div>
                 <div class="footer-temp">38 °C</div>
@@ -265,7 +263,7 @@
                 <div class="footer-continent">Europe</div>
                 <div class="footer-temp">30 °C</div>
                 <div class="city-name">London, 10:10 AM </div>
-                <div class="humid-percent">   
+                <div class="humid-percent">
                     <p> 53% <img src="/images/Weather_Icons/humidityIcon.svg" alt="raindrop"></p>
                 </div>
             </div>
@@ -303,7 +301,7 @@
             </div>
         </div>
     </div>
-
+    <script src="index.js"></script>
 </body>
 
 </html>
