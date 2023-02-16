@@ -26,10 +26,9 @@ function initCity() {
 };
 
 function callChange() {
-    console.log("Inside callChange function");
      var city = Object.keys(weather_data);
      console.log(city[3]);
-     let cityGiven = document.querySelector("#change-values").value;
+     let cityGiven = document.querySelector("#change-values").value.toLowerCase();
      console.log(cityGiven);
      let flag = 0;
      for(let i = 0; i < city.length; i++)
@@ -67,19 +66,15 @@ function change() {
     "Dec",
   ];
 
-  const weatherImages = [
-    document.getElementById(`weather-image1`),
-    document.getElementById(`weather-image2`),
-    document.getElementById(`weather-image3`),
-    document.getElementById(`weather-image4`),
-    document.getElementById(`weather-image5`),
-    document.getElementById(`weather-image6`),
-  ];
+  const weatherImages = [];
+  for(let i=0; i<6; i++){
+    weatherImages[i] = document.getElementById(`weather-image${i+1}`);
+  }
 
   const weatherArray = [];
 
   var city = Object.keys(weather_data);
-  var current_city = document.querySelector("#change-values").value;
+  var current_city = document.querySelector("#change-values").value.toLowerCase();
 
   //change the logo image
   var logo = document.getElementById("logo");
