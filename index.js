@@ -167,15 +167,16 @@ class Base {
 
       document.getElementById(`current-time${i}`).innerHTML = time + " " + amPm;
 
-      if (time == (11 || 12) && amPm == "AM") {
+      if ((time == 11 ) || (time == 12) && amPm == "AM") {
         amPm = "PM";
-      } else if (time == (11 || 12) && amPm == "PM") {
+      } else if ((time == 11 ) || (time == 12) && amPm == "PM") {
         amPm = "AM";
       }
+
       time++;
     }
 
-    const cityData = fetch(`https://soliton.glitch.me?city=${current_city}`)
+    fetch(`https://soliton.glitch.me?city=${current_city}`)
       .then((data) => data.json())
       .then((result) => {
         fetch("https://soliton.glitch.me/hourly-forecast", {
@@ -280,16 +281,11 @@ class Base {
     this.weatherChoice = val;
     this.getArr = [];
     this.cityValues = Object.values(this.data);
-    console.log("inside displayCards");
-    // document.getElementById("sunny-button").classList.remove("active");
-    // document.getElementById("rainy-button").classList.remove("active");
-    // document.getElementById("cold-button").classList.remove("active");
     if (this.weatherChoice == "sunny") {
       document.getElementById("sunny-button").style.borderBottom =
         "2px solid #1E90FF";
       document.getElementById("cold-button").style.borderBottom = "none";
       document.getElementById("rainy-button").style.borderBottom = "none";
-      // document.getElementById("sunny-button").classList.add("active");
       for (let i = 0; i < this.cityValues.length; i++) {
         if (
           parseInt(this.cityValues[i].temperature) > 29 &&
@@ -304,7 +300,6 @@ class Base {
       document.getElementById("cold-button").style.borderBottom =
         "2px solid #1E90FF";
       document.getElementById("rainy-button").style.borderBottom = "none";
-      //document.getElementById("rainy-button").classList.add("active");
       for (let i = 0; i < this.cityValues.length; i++) {
         if (
           parseInt(this.cityValues[i].temperature) >= 20 &&
