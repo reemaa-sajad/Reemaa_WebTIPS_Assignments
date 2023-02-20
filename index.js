@@ -281,15 +281,15 @@ class Base {
     this.getArr = [];
     this.cityValues = Object.values(this.data);
     console.log("inside displayCards");
-    document.getElementById("sunny-button").classList.remove("active");
-    document.getElementById("rainy-button").classList.remove("active");
-    document.getElementById("cold-button").classList.remove("active");
+    // document.getElementById("sunny-button").classList.remove("active");
+    // document.getElementById("rainy-button").classList.remove("active");
+    // document.getElementById("cold-button").classList.remove("active");
     if (this.weatherChoice == "sunny") {
-      // document.getElementById("sunny-button").style.borderBottom =
-      //   "2px solid #1E90FF";
-      // document.getElementById("cold-button").style.borderBottom = "none";
-      // document.getElementById("rainy-button").style.borderBottom = "none";
-      document.getElementById("sunny-button").classList.add("active");
+      document.getElementById("sunny-button").style.borderBottom =
+        "2px solid #1E90FF";
+      document.getElementById("cold-button").style.borderBottom = "none";
+      document.getElementById("rainy-button").style.borderBottom = "none";
+      // document.getElementById("sunny-button").classList.add("active");
       for (let i = 0; i < this.cityValues.length; i++) {
         if (
           parseInt(this.cityValues[i].temperature) > 29 &&
@@ -300,11 +300,11 @@ class Base {
         }
       }
     } else if (this.weatherChoice == "snowflake") {
-      // document.getElementById("sunny-button").style.borderBottom = "none";
-      // document.getElementById("cold-button").style.borderBottom =
-      //   "2px solid #1E90FF";
-      // document.getElementById("rainy-button").style.borderBottom = "none";
-      document.getElementById("rainy-button").classList.add("active");
+      document.getElementById("sunny-button").style.borderBottom = "none";
+      document.getElementById("cold-button").style.borderBottom =
+        "2px solid #1E90FF";
+      document.getElementById("rainy-button").style.borderBottom = "none";
+      //document.getElementById("rainy-button").classList.add("active");
       for (let i = 0; i < this.cityValues.length; i++) {
         if (
           parseInt(this.cityValues[i].temperature) >= 20 &&
@@ -316,10 +316,10 @@ class Base {
         }
       }
     } else if (this.weatherChoice == "rainy") {
-      // document.getElementById("sunny-button").style.borderBottom = "none";
-      // document.getElementById("cold-button").style.borderBottom = "none";
-      // document.getElementById("rainy-button").style.borderBottom =
-      //   "2px solid #1E90FF";
+      document.getElementById("sunny-button").style.borderBottom = "none";
+      document.getElementById("cold-button").style.borderBottom = "none";
+      document.getElementById("rainy-button").style.borderBottom =
+        "2px solid #1E90FF";
       document.getElementById("cold-button").classList.add("active");
       for (let i = 0; i < this.cityValues.length; i++) {
         if (
