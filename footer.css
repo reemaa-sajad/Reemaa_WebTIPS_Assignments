@@ -71,6 +71,44 @@
     transform: scale(1.1);
   }
   
+  .continent0:hover {
+    transform: scale(1.1);
+  }
+  .continent1:hover {
+    transform: scale(1.1);
+  }
+  .continent2:hover {
+    transform: scale(1.1);
+  }
+  .continent3:hover {
+    transform: scale(1.1);
+  }
+  .continent4:hover {
+    transform: scale(1.1);
+  }
+  .continent5:hover {
+    transform: scale(1.1);
+  }
+  .continent6:hover {
+    transform: scale(1.1);
+  }
+  .continent7:hover {
+    transform: scale(1.1);
+  }
+  .continent8:hover {
+    transform: scale(1.1);
+  }
+  .continent9:hover {
+    transform: scale(1.1);
+  }
+  .continent10:hover {
+    transform: scale(1.1);
+  }
+  .continent11:hover {
+    transform: scale(1.1);
+  }
+
+
   .footer-continent {
     color: #fff461;
     font-size: 20px;
