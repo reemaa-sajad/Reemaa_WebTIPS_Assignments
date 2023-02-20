@@ -29,6 +29,10 @@
   .active{
     margin-bottom: 2px solid #1E90FF;
   }
+
+  .active{
+    margin-bottom: 2px solid #1E90FF;
+  }
   
   .displaytop {
     font-size: 15px;
@@ -217,6 +221,9 @@
   .mid-precip {
     font-size: 20px;
     margin-bottom: 15px;
+  }
+
+  .humid-icon, .precip-icon{
     padding-right: 10px;
   }
 
