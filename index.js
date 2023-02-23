@@ -1,5 +1,5 @@
 window.setTimeout(function () { window.location.reload();}, 60000);
-fetch("https://soliton.glitch.me/all-timezone-cities")
+fetch("http://localhost:8000/allCities")
   .then((data) => data.json())
   .then((result) => {
     let cityList = {};
@@ -176,10 +176,10 @@ class Base {
       time++;
     }
 
-    fetch(`https://soliton.glitch.me?city=${current_city}`)
+    fetch(`http://localhost:8000/cityData?city=${current_city}`)
       .then((data) => data.json())
       .then((result) => {
-        fetch("https://soliton.glitch.me/hourly-forecast", {
+        fetch("http://localhost:8000/nextFiveHours", {
           method: "POST",
           body: JSON.stringify({
             ...result,
