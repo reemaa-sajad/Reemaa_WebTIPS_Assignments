@@ -58,7 +58,7 @@ function callChange() {
             flag = 1;
         }
     } 
-    if (flag == 0){
+    if (flag === 0){
          setNullVal(); 
     }
 }
@@ -75,17 +75,38 @@ setInterval(callChange,1000);
 function change() {
 
   const weatherImages = [];
+  const weatherArray = [];
+  var city = Object.keys(weather_data);
   for(let weatherPic=0; weatherPic<6; weatherPic++){
     weatherImages[i] = document.getElementById(`weather-image${weatherPic+1}`);
   }
 
-  const weatherArray = [];
-
-  var city = Object.keys(weather_data);
+  
+  for(let weatherPic=0; weatherPic<6; weatherPic++){
+    weatherImages[i] = document.getElementById(`weather-image${weatherPic+1}`);
+  }
   var current_city = document.querySelector("#change-values").value.toLowerCase();
+  var logo = document.getElementById("logo");
+  let cel = weather_data[current_city].temperature.slice(0, -2);
+  var tzone = weather_data[current_city].timeZone;
+  var time = new Date().toLocaleString("en-US", {
+    timeZone: tzone,
+    timeStyle: "medium",
+    hourCycle: "h12",
+  });
+  let dateTimeArr = weather_data[current_city].dateAndTime.split(",");
+  let dateSplit = dateTimeArr[0];
+  let dateArr = dateSplit.split("/");
+  let dateInWords =
+    String(dateArr[1].padStart(2, "0")) +
+    "-" +
+    monthArr[dateArr[0] - 1] +
+    "-" +
+    dateArr[2];
+  let amPm = time.slice(-2);
+
 
   //change the logo image
-  var logo = document.getElementById("logo");
   logo.src = `/images/Icons_for_cities/${current_city}.svg`;
 
   //Box Border
@@ -96,7 +117,6 @@ function change() {
     weather_data[current_city].temperature;
 
   //temperature F
-  let cel = weather_data[current_city].temperature.slice(0, -2);
   far = changetoFarenheit(cel);
   far = far.toPrecision(3);
   far += " F";
@@ -112,30 +132,15 @@ function change() {
 
   //date and time
   dateTimeArr = weather_data[current_city].dateAndTime.split(",");
-  //var time = dateTimeArr[1].slice(0, -2);
+
   //Real time
-  var tzone = weather_data[current_city].timeZone;
-  var time = new Date().toLocaleString("en-US", {
-    timeZone: tzone,
-    timeStyle: "medium",
-    hourCycle: "h12",
-  });
   document.getElementById("header-time").innerHTML = time;
 
   //date
-  let dateSplit = dateTimeArr[0];
-  let dateArr = dateSplit.split("/");
-  let dateInWords =
-    String(dateArr[1].padStart(2, "0")) +
-    "-" +
-    monthArr[dateArr[0] - 1] +
-    "-" +
-    dateArr[2];
   document.getElementById("header-date").innerHTML = dateInWords;
 
   //getting timeline on the right side of header
   document.getElementById(`current-time0`).innerHTML = "NOW";
-  let amPm = time.slice(-2);
   time = time.slice(0, 2);
   time = parseInt(time)+1;
   console.log(time);
@@ -146,11 +151,11 @@ function change() {
 
     document.getElementById(`current-time${timeDisplay}`).innerHTML = time +" "+ amPm;
 
-    if(time==(11||12) && amPm== "AM")
+    if(time=== (11||12) && amPm=== "AM")
     {
         amPm= "PM";
     } 
-    else if(time==(11||12) && amPm == "PM"){
+    else if(time=== (11||12) && amPm === "PM"){
         amPm = "AM";
     } 
     time++;
@@ -240,11 +245,12 @@ function display(slicedArr)
     timeStyle: "short",
     hourCycle: "h12",
     });
-
     dateTimeArr = slicedArr[i].dateAndTime.split(",");
     let dateSplit = dateTimeArr[0];
     let dateArr = dateSplit.split("/");
     let dateInWords = String(dateArr[1].padStart(2, "0")) + "-" + monthArr[dateArr[0] - 1] + "-" + dateArr[2];
+
+    
     weatherCards += `<div class="card${i}">
     <div class="city-temp">
         <p>${slicedArr[i].cityName}</p>
@@ -298,13 +304,13 @@ function setMinMax()
 //Function to sort the selected cities 
 function sortCity()
 {
-  if(weatherChoice=="sunny")
+  if(weatherChoice==="sunny")
   {
     getArr.sort((a,b)=>{
       return parseInt(b.temperature)-parseInt(a.temperature);
     })
   } 
-  else if(weatherChoice=="snowflake")
+  else if(weatherChoice==="snowflake")
   {
     getArr.sort((a,b)=>{
       return parseInt(b.precipitation)-parseInt(a.precipitation);
@@ -321,11 +327,11 @@ function sortCity()
 
 //Function to get user choice and select the cities based on the weather specifications for the given user choice
 function displayCards(val){
+  var cityValues = Object.values(weather_data);
   weatherChoice = val;
   getArr = [];
-  var cityValues = Object.values(weather_data);
 
-  if (weatherChoice == "sunny"){
+  if (weatherChoice === "sunny"){
     document.getElementById("sunny-button").style.borderBottom = "2px solid #1E90FF";
     document.getElementById("cold-button").style.borderBottom = "none";
     document.getElementById("rainy-button").style.borderBottom = "none";
@@ -337,7 +343,7 @@ function displayCards(val){
           getArr.push(cityValues[i]);
         }
     }
-  } else if (weatherChoice == "snowflake")
+  } else if (weatherChoice === "snowflake")
   {
     document.getElementById("sunny-button").style.borderBottom = "none";
     document.getElementById("cold-button").style.borderBottom = "2px solid #1E90FF";
@@ -351,7 +357,7 @@ function displayCards(val){
         getArr.push(cityValues[i]);
       }
     }
-  } else if(weatherChoice == "rainy"){
+  } else if(weatherChoice === "rainy"){
     document.getElementById("sunny-button").style.borderBottom = "none";
     document.getElementById("cold-button").style.borderBottom = "none";
     document.getElementById("rainy-button").style.borderBottom = "2px solid #1E90FF";
@@ -369,7 +375,6 @@ function displayCards(val){
 
 //Function to scroll left while dislaying 4 or more cards
 function scrolLeft(){
-  console.log("Inside scroll left");
   document.querySelector(".with-arrow").scrollLeft -= 340;
 }
 
