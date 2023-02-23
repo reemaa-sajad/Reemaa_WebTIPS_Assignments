@@ -74,17 +74,10 @@ setInterval(callChange,1000);
 //Function to change the weather values displayed in header section based on city chosen by user
 function change() {
 
-  const weatherImages = [];
-  const weatherArray = [];
+  let weatherImages = [];
+  let weatherArray = [];
   var city = Object.keys(weather_data);
-  for(let weatherPic=0; weatherPic<6; weatherPic++){
-    weatherImages[i] = document.getElementById(`weather-image${weatherPic+1}`);
-  }
 
-  
-  for(let weatherPic=0; weatherPic<6; weatherPic++){
-    weatherImages[i] = document.getElementById(`weather-image${weatherPic+1}`);
-  }
   var current_city = document.querySelector("#change-values").value.toLowerCase();
   var logo = document.getElementById("logo");
   let cel = weather_data[current_city].temperature.slice(0, -2);
@@ -176,20 +169,18 @@ function change() {
   ].temperature.slice(0, 2);
 
   //getting the image icon for weather
-  for (var i = 0; i <= 5; i++) {
+  for (let iterator = 0; iterator <= 5; iterator++) {
     if (parseInt(weatherArray[i]) >= 23 && parseInt(weatherArray[i]) < 29) {
-      weatherImages[i].src = `/images/Weather_Icons/cloudyIcon.svg`;
+      document.getElementById(`weather-image${i+1}`).src = "./images/Weather_Icons/cloudyIcon.svg";
     } else if (
-      parseInt(weatherArray[i]) >= 18 &&
-      parseInt(weatherArray[i]) <= 22
-    ) {
-      weatherImages[i].src = `/images/Weather_Icons/windyIcon.svg`;
+      parseInt(weatherArray[i]) >= 18 && parseInt(weatherArray[i]) <= 22) {
+        document.getElementById(`weather-image${i+1}`).src = "./images/Weather_Icons/windyIcon.svg";
     } else if (parseInt(weatherArray[i]) <=0) {
-        weatherImages[i].src = `/images/Weather_Icons/snowflakeIcon.svg`;
+      document.getElementById(`weather-image${i+1}`).src = "./images/Weather_Icons/snowflakeIcon.svg";
     } else if (parseInt(weatherArray[i]) < 18) {
-      weatherImages[i].src = `/images/Weather_Icons/rainyIcon.svg`;
+      document.getElementById(`weather-image${i+1}`).src = "./images/Weather_Icons/rainyIcon.svg";
     } else if (parseInt(weatherArray[i]) >= 29) {
-      weatherImages[i].src = `/images/Weather_Icons/sunnyIcon.svg`;
+      document.getElementById(`weather-image${i+1}`).src = "./images/Weather_Icons/sunnyIcon.svg";
     } 
   }
 };
@@ -216,10 +207,10 @@ function setNullVal(){
      //Hourly Time
      for(let hourlyTime=0; hourlyTime<6; hourlyTime++)
      {
-         document.getElementById(`current-time${hourlyTemp}`).innerHTML = "-";
+         document.getElementById(`current-time${hourlyTime}`).innerHTML = "-";
      }
     //Hourly Temperature
-    for(let i=hourlyTemp; i<=hourlyTemp; hourlyTemp++){
+    for(let hourlyTemp=1; hourlyTemp<=6; hourlyTemp++){
         document.getElementById(`temp${hourlyTemp}`).innerHTML = "NA";
     }
     //Weather icon for hourly temperature
@@ -236,7 +227,7 @@ setInterval( function() { displayCards(weatherChoice); },60000);
 function display(slicedArr)
 { 
   let weatherCards = "";
-  for(let i=0; i<slicedArr.length; i++)
+  for(let iterator=0; iterator<slicedArr.length; iterator++)
   {
     
     var tzone = slicedArr[i].timeZone;
@@ -269,7 +260,7 @@ function display(slicedArr)
 
   }
   document.querySelector(".second-row").innerHTML = weatherCards;
-  for(let i=0; i<slicedArr.length; i++)
+  for(let iterator=0; iterator<slicedArr.length; iterator++)
     {
       document.querySelector(`.card${i}`).style.backgroundImage = `url(/images/Icons_for_cities/${slicedArr[i].cityName}.svg)`;
     }
@@ -335,7 +326,7 @@ function displayCards(val){
     document.getElementById("sunny-button").style.borderBottom = "2px solid #1E90FF";
     document.getElementById("cold-button").style.borderBottom = "none";
     document.getElementById("rainy-button").style.borderBottom = "none";
-    for(let i=0; i<cityValues.length; i++)
+    for(let citySort=0; citySort<cityValues.length; citySort++)
     {
       if( (parseInt(cityValues[i].temperature) > 29) 
         && (parseInt(cityValues[i].humidity) < 50) 
@@ -348,7 +339,7 @@ function displayCards(val){
     document.getElementById("sunny-button").style.borderBottom = "none";
     document.getElementById("cold-button").style.borderBottom = "2px solid #1E90FF";
     document.getElementById("rainy-button").style.borderBottom = "none";
-    for(let i=0; i<cityValues.length; i++)
+    for(let citySort=0; citySort<cityValues.length; citySort++)
     {
       if( (parseInt(cityValues[i].temperature)>=20 && parseInt(cityValues[i].temperature) < 28) 
       && (parseInt(cityValues[i].humidity) > 50) 
@@ -361,7 +352,7 @@ function displayCards(val){
     document.getElementById("sunny-button").style.borderBottom = "none";
     document.getElementById("cold-button").style.borderBottom = "none";
     document.getElementById("rainy-button").style.borderBottom = "2px solid #1E90FF";
-    for(let i=0; i<cityValues.length; i++)
+    for(let citySort=0; citySort<cityValues.length; citySort++)
     {
       if( (parseInt(cityValues[i].temperature) < 20) 
         && (parseInt(cityValues[i].humidity) >= 50) ){
