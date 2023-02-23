@@ -1,4 +1,4 @@
-window.setTimeout(function () {  window.location.reload();}, 60000);
+window.setTimeout(function () { window.location.reload();}, 60000);
 fetch("https://soliton.glitch.me/all-timezone-cities")
   .then((data) => data.json())
   .then((result) => {
