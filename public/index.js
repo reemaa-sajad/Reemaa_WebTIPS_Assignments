@@ -1,5 +1,5 @@
 window.setTimeout(function () { window.location.reload();}, 60000);
-fetch("http://localhost:8000/allCities")
+fetch("http://localhost:3000/allCities")
   .then((data) => data.json())
   .then((result) => {
     let cityList = {};
@@ -176,10 +176,10 @@ class Base {
       time++;
     }
 
-    fetch(`http://localhost:8000/cityData?city=${current_city}`)
+    fetch(`http://localhost:3000/cityData?city=${current_city}`)
       .then((data) => data.json())
       .then((result) => {
-        fetch("http://localhost:8000/nextFiveHours", {
+        fetch("http://localhost:3000/nextFiveHours", {
           method: "POST",
           body: JSON.stringify({
             ...result,
