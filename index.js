@@ -33,9 +33,6 @@ const monthArr = [
 })();
 //Header section
 //Function to initialize city values in dropdown 
-
-
-//Function to initialize city values in dropdown 
 function setCity() {
   var city = Object.keys(weather_data);
   var option = ``;
@@ -176,17 +173,17 @@ function change() {
 
   //getting the image icon for weather
   for (let iterator = 0; iterator <= 5; iterator++) {
-    if (parseInt(weatherArray[i]) >= 23 && parseInt(weatherArray[i]) < 29) {
-      document.getElementById(`weather-image${i+1}`).src = "./images/Weather_Icons/cloudyIcon.svg";
+    if (parseInt(weatherArray[iterator]) >= 23 && parseInt(weatherArray[iterator]) < 29) {
+      document.getElementById(`weather-image${iterator+1}`).src = "./images/Weather_Icons/cloudyIcon.svg";
     } else if (
-      parseInt(weatherArray[i]) >= 18 && parseInt(weatherArray[i]) <= 22) {
-        document.getElementById(`weather-image${i+1}`).src = "./images/Weather_Icons/windyIcon.svg";
-    } else if (parseInt(weatherArray[i]) <=0) {
-      document.getElementById(`weather-image${i+1}`).src = "./images/Weather_Icons/snowflakeIcon.svg";
-    } else if (parseInt(weatherArray[i]) < 18) {
-      document.getElementById(`weather-image${i+1}`).src = "./images/Weather_Icons/rainyIcon.svg";
-    } else if (parseInt(weatherArray[i]) >= 29) {
-      document.getElementById(`weather-image${i+1}`).src = "./images/Weather_Icons/sunnyIcon.svg";
+      parseInt(weatherArray[iterator]) >= 18 && parseInt(weatherArray[iterator]) <= 22) {
+        document.getElementById(`weather-image${iterator+1}`).src = "./images/Weather_Icons/windyIcon.svg";
+    } else if (parseInt(weatherArray[iterator]) <=0) {
+      document.getElementById(`weather-image${iterator+1}`).src = "./images/Weather_Icons/snowflakeIcon.svg";
+    } else if (parseInt(weatherArray[iterator]) < 18) {
+      document.getElementById(`weather-image${iterator+1}`).src = "./images/Weather_Icons/rainyIcon.svg";
+    } else if (parseInt(weatherArray[iterator]) >= 29) {
+      document.getElementById(`weather-image${iterator+1}`).src = "./images/Weather_Icons/sunnyIcon.svg";
     } 
   }
 };
@@ -237,31 +234,31 @@ function display(slicedArr)
   for(let iterator=0; iterator<slicedArr.length; iterator++)
   {
     
-    var tzone = slicedArr[i].timeZone;
+    var tzone = slicedArr[iterator].timeZone;
     var time = new Date().toLocaleString("en-US", {
     timeZone: tzone,
     timeStyle: "short",
     hourCycle: "h12",
     });
-    dateTimeArr = slicedArr[i].dateAndTime.split(",");
+    dateTimeArr = slicedArr[iterator].dateAndTime.split(",");
     let dateSplit = dateTimeArr[0];
     let dateArr = dateSplit.split("/");
     let dateInWords = String(dateArr[1].padStart(2, "0")) + "-" + monthArr[dateArr[0] - 1] + "-" + dateArr[2];
 
     
-    weatherCards += `<div class="card${i}">
+    weatherCards += `<div class="card${iterator}">
     <div class="city-temp">
-        <p>${slicedArr[i].cityName}</p>
+        <p>${slicedArr[iterator].cityName}</p>
         <div class="mid-temp">
             <img class="sun" src="/images/Weather_Icons/${weatherChoice}Icon.svg">
-            <p>${slicedArr[i].temperature}</p>
+            <p>${slicedArr[iterator].temperature}</p>
         </div>
     </div>
     <div class="changesize time">${time}</div>
     <div class="changesize date">${dateInWords}</div>
     <div class="dandt">
-        <p class="mid-humidity"><img src="/images/Weather_Icons/humidityIcon.svg">${slicedArr[i].humidity}</p>
-        <p class="mid-precip"><img src="/images/Weather_Icons/precipitationIcon.svg">${slicedArr[i].precipitation}</p>
+        <p class="mid-humidity"><img src="/images/Weather_Icons/humidityIcon.svg">${slicedArr[iterator].humidity}</p>
+        <p class="mid-precip"><img src="/images/Weather_Icons/precipitationIcon.svg">${slicedArr[iterator].precipitation}</p>
     </div>
     </div>`
 
@@ -269,7 +266,7 @@ function display(slicedArr)
   document.querySelector(".second-row").innerHTML = weatherCards;
   for(let iterator=0; iterator<slicedArr.length; iterator++)
     {
-      document.querySelector(`.card${i}`).style.backgroundImage = `url(/images/Icons_for_cities/${slicedArr[i].cityName}.svg)`;
+      document.querySelector(`.card${iterator}`).style.backgroundImage = `url(/images/Icons_for_cities/${slicedArr[iterator].cityName}.svg)`;
     }
     
   
@@ -335,10 +332,10 @@ function displayCards(val){
     document.getElementById("rainy-button").style.borderBottom = "none";
     for(let citySort=0; citySort<cityValues.length; citySort++)
     {
-      if( (parseInt(cityValues[i].temperature) > 29) 
-        && (parseInt(cityValues[i].humidity) < 50) 
-        && (parseInt(cityValues[i].precipitation) >= 50) ){
-          getArr.push(cityValues[i]);
+      if( (parseInt(cityValues[citySort].temperature) > 29) 
+        && (parseInt(cityValues[citySort].humidity) < 50) 
+        && (parseInt(cityValues[citySort].precipitation) >= 50) ){
+          getArr.push(cityValues[citySort]);
         }
     }
   } else if (weatherChoice === "snowflake")
@@ -348,11 +345,11 @@ function displayCards(val){
     document.getElementById("rainy-button").style.borderBottom = "none";
     for(let citySort=0; citySort<cityValues.length; citySort++)
     {
-      if( (parseInt(cityValues[i].temperature)>=20 && parseInt(cityValues[i].temperature) < 28) 
-      && (parseInt(cityValues[i].humidity) > 50) 
-      && (parseInt(cityValues[i].precipitation) < 50))
+      if( (parseInt(cityValues[citySort].temperature)>=20 && parseInt(cityValues[citySort].temperature) < 28) 
+      && (parseInt(cityValues[citySort].humidity) > 50) 
+      && (parseInt(cityValues[citySort].precipitation) < 50))
       {
-        getArr.push(cityValues[i]);
+        getArr.push(cityValues[citySort]);
       }
     }
   } else if(weatherChoice === "rainy"){
@@ -361,9 +358,9 @@ function displayCards(val){
     document.getElementById("rainy-button").style.borderBottom = "2px solid #1E90FF";
     for(let citySort=0; citySort<cityValues.length; citySort++)
     {
-      if( (parseInt(cityValues[i].temperature) < 20) 
-        && (parseInt(cityValues[i].humidity) >= 50) ){
-          getArr.push(cityValues[i])
+      if( (parseInt(cityValues[citySort].temperature) < 20) 
+        && (parseInt(cityValues[citySort].humidity) >= 50) ){
+          getArr.push(cityValues[citySort])
         }
     }
   }
