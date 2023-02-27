@@ -124,6 +124,7 @@ Base.prototype.change = function(){
 
   //getting timeline on the right side of header
   document.getElementById(`current-time0`).innerHTML = "NOW";
+  let amPm = time.slice(-2);
   time = time.slice(0, 2);
   time = parseInt(time)+1;
   for (let i = 1; i < 6; i++) {
@@ -131,8 +132,7 @@ Base.prototype.change = function(){
       time = time - 12;
     }
 
-    document.getElementById(`current-time${timeDisplay}`).innerHTML = time +" "+ amPm;
-
+    document.getElementById(`current-time${i}`).innerHTML = time +" "+ amPm;
     if(time=== (11||12) && amPm=== "AM")
     {
         amPm= "PM";
