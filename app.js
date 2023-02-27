@@ -1,30 +1,37 @@
 const express = require('express')
+const path = require('path')
 const port = 3000
-const {allTimeZones,timeForOneCity,nextNhoursWeather} = require("./timeZone");
 const app = express()
+const {fork} = require('child_process');
 
-app.use(express.static("public"))
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 
-app.get("/", (req,res)=>{
-    console.log(req.url)
-    res.render("/public/index.html")
-})
-
-app.get("/allCities", (req,res)=>{
-    weatherResult = allTimeZones();
-    res.json(weatherResult);
+app.get("/allCities",(req,res)=>{
+    const weatherData = fork('./allCities');
+    weatherData.send("message");
+    weatherData.on("message",(message)=>{
+        res.json(message);
+    })
+    
 })
 
 app.get("/cityData",(req,res)=>{
-    var city = req.query.city;
-    res.json(timeForOneCity(city));
+    const cityData = fork('./cityData');
+    cityData.send({"city":req.query.city})
+    cityData.on("message",(message)=>{
+        res.json(message);
+    })
+    
 })
 
 app.post("/nextFiveHours",(req,res)=>{
-    let cityTDN = req.body.city_Date_Time_Name;
-    let hours = req.body.hours;
-    res.json(nextNhoursWeather(cityTDN,hours,weatherResult))
+    const nextFiveHours = fork('./nextFiveHours');
+    nextFiveHours.send({city:req.body.city_Date_Time_Name,
+    hours:req.body.hours})
+    nextFiveHours.on("message",(message)=>{
+        res.json(message);
+    })
 })
 
 app.listen(port,(err)=>{
