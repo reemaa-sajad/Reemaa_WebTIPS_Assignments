@@ -14,18 +14,6 @@ app.get("/", (req,res)=>{
 app.get("/allCities", (req,res)=>{
     weatherResult = allTimeZones();
     res.json(weatherResult);
-    // let currentTime = new Date();
-    // if(currentTime - startTime > dayCheck){
-    //     startTime = new Date()
-    //     weatherResult = timeZones.allTimeZones()
-    //     res.json(weatherResult)
-    // }
-    // else{
-    //     if(weatherResult.length === 0){
-    //         weatherResult = timeZones.allTimeZones()
-    //     }
-    //     res.json(weatherResult);
-    // }
 })
 
 app.get("/cityData",(req,res)=>{
