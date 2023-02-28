@@ -310,10 +310,7 @@ class Base {
       weatherCards += `<div class="card${i}">
     <div class="city-temp">
         <p>${this.slicedArr[i].cityName}</p>
-        <p>${this.slicedArr[i].cityName}</p>
         <div class="mid-temp">
-            <img class="sun" src="/images/Weather_Icons/${this.weatherChoice}Icon.svg">
-            <p>${this.slicedArr[i].temperature}</p>
             <img class="sun" src="/images/Weather_Icons/${this.weatherChoice}Icon.svg">
             <p>${this.slicedArr[i].temperature}</p>
         </div>
@@ -321,8 +318,6 @@ class Base {
     <div class="changesize time">${time}</div>
     <div class="changesize date">${dateInWords}</div>
     <div class="dandt">
-        <p class="mid-humidity"><img src="/images/Weather_Icons/humidityIcon.svg">${this.slicedArr[i].humidity}</p>
-        <p class="mid-precip"><img src="/images/Weather_Icons/precipitationIcon.svg">${this.slicedArr[i].precipitation}</p>
         <p class="mid-humidity"><img src="/images/Weather_Icons/humidityIcon.svg">${this.slicedArr[i].humidity}</p>
         <p class="mid-precip"><img src="/images/Weather_Icons/precipitationIcon.svg">${this.slicedArr[i].precipitation}</p>
     </div>
