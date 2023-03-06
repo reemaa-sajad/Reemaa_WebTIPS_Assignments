@@ -26,12 +26,10 @@ var app = http.createServer((req,res)=>{
 
     if(req.url === ".ico" || file === 'vars.css')
     {
+        console.log("Inside if case for .ico file")
         res.end();
         return;
     }
-  
-    // fs.createReadStream(htmlfile);
-    // fs.ReadStream.pipe(res);
 
     if(req.url == "/allCities")
     {
